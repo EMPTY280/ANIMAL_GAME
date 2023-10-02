@@ -29,8 +29,11 @@ public class MapScroller : MonoBehaviour
         {
             LevelSegment seg = transform.GetChild(i).GetComponent<LevelSegment>();
             segments.Add(seg);
-        }
+        }        
+    }
 
+    private void Start()
+    {
         // 최초 조각 + 두번째 조각 로드
         currentSegment = segments[firstSegment];
         segments.RemoveAt(firstSegment);
@@ -65,7 +68,7 @@ public class MapScroller : MonoBehaviour
         return select;
     }
 
-    // 각 조각의 위치 업뎅트
+    // 각 조각의 위치 업데이트
     private void SetSegmentPos()
     {
         currentSegment.transform.position = new Vector2(0 - offset, 0);

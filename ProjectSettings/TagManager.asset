@@ -13,8 +13,8 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
+  - Rope
+  - RopeEnd
   - 
   - 
   - 
@@ -41,4 +41,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackGround
+    uniqueID: 2365480097
+    locked: 0
+  - name: MapObject
+    uniqueID: 1122383957
+    locked: 0
+  - name: Player
+    uniqueID: 1189315299
     locked: 0
