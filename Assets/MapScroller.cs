@@ -18,10 +18,10 @@ public class MapScroller : MonoBehaviour
     [SerializeField] float scrollSpeed = 1.0f;
     // 현재 스크롤중인 조각의 위치 및 이동 임계값
     float offset = 0.0f;
-    float offsetMax = 22.0f;
+    [SerializeField] protected float offsetMax = 22.0f;
 
 
-    private void Awake()
+    protected virtual void Awake()
     {
         // 세그먼트 리스트에 넣기
         int count = transform.childCount;
@@ -37,7 +37,8 @@ public class MapScroller : MonoBehaviour
         // 최초 조각 + 두번째 조각 로드
         currentSegment = segments[firstSegment];
         segments.RemoveAt(firstSegment);
-        nextSegment = GetRandomSegment();
+        //nextSegment = GetRandomSegment();
+        nextSegment = GetNextSegment();
 
         SetSegmentPos();
     }
@@ -68,11 +69,19 @@ public class MapScroller : MonoBehaviour
         return select;
     }
 
+    private LevelSegment GetNextSegment()
+    {
+        LevelSegment select = segments[0];
+        segments.RemoveAt(0);
+
+        return select;
+    }
+
     // 각 조각의 위치 업데이트
     private void SetSegmentPos()
     {
         currentSegment.transform.position = new Vector2(0 - offset, 0);
-        nextSegment.transform.position = new Vector2(22 - offset, 0);
+        nextSegment.transform.position = new Vector2(offsetMax - offset, 0);
     }
 
     // 현재 사용중인 조각 업데이트
@@ -81,6 +90,7 @@ public class MapScroller : MonoBehaviour
         currentSegment.ReturnToOrigin();
         segments.Add(currentSegment);
         currentSegment = nextSegment;
-        nextSegment = GetRandomSegment();
+        //nextSegment = GetRandomSegment();
+        nextSegment = GetNextSegment();
     }
 }
