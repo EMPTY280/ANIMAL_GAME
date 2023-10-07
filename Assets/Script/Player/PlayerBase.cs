@@ -8,6 +8,8 @@ using UnityEngine.UIElements;
 
 public class PlayerBase : MonoBehaviour
 {
+    Vector3 originPos;
+
     protected Rigidbody2D rigidBody;
     protected Animator animator;
     protected BoxCollider2D boxCollider;
@@ -17,8 +19,8 @@ public class PlayerBase : MonoBehaviour
     protected LayerMask ropeLayer;
     protected LayerMask ropeEndLayer;
 
-    [SerializeField] protected float jumpPower = 15.0f;
-    protected float gravityPower = 5f;
+    [SerializeField] protected float jumpPower = 23f;
+    protected float gravityPower = 10f;
     protected int maxJump = 2;
     [SerializeField] protected int ableJump;
     [SerializeField] protected bool onGround = false;
@@ -38,7 +40,21 @@ public class PlayerBase : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        originPos = transform.position;
         rigidBody.gravityScale = gravityPower;
+    }
+
+    protected virtual void Update()
+    {
+        if(transform.position.x != originPos.x)
+        {
+            transform.position = new Vector2(originPos.x, transform.position.y);
+        }
+
+        if (transform.rotation != Quaternion.Euler(0, 0, 0))
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
     }
 
     protected virtual void FixedUpdate()
@@ -155,7 +171,7 @@ public class PlayerBase : MonoBehaviour
 
     protected void GroundCheck()
     {
-        if (rigidBody.velocity.y < 0 && Physics2D.Raycast(transform.position, Vector2.down, 0.3f, groundLayer))
+        if (rigidBody.velocity.y < 0 && Physics2D.Raycast(transform.position, Vector2.down, 0.8f, groundLayer))
         {
             LandingSet();
         }
@@ -163,7 +179,8 @@ public class PlayerBase : MonoBehaviour
 
     protected void RopeCheck()
     {
-        RaycastHit2D raycastHit = Physics2D.Raycast(transform.position + new Vector3(-0.5f, 0, 0), Vector2.right, 1f, ropeLayer);
+        Vector2 rayStartPos = (Vector2)transform.position - new Vector2(0.5f, 0);
+        RaycastHit2D raycastHit = Physics2D.Raycast(rayStartPos, Vector2.right, 2f, ropeLayer);
 
         if (raycastHit.collider != null)
         {
@@ -178,6 +195,14 @@ public class PlayerBase : MonoBehaviour
         if(Physics2D.Raycast(transform.position, Vector2.right, 1f,ropeEndLayer) && onRope == true)
         {
             Rope(false);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Item") == true)
+        {
+            collision.gameObject.SetActive(false);
         }
     }
 }

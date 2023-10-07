@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Item
   - Obstacle
-  - FADEOUT
   layers:
   - Default
   - TransparentFX
@@ -44,11 +44,14 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: BackGround
-    uniqueID: 2365480097
+    uniqueID: 4226798341
     locked: 0
-  - name: MapObject
-    uniqueID: 1122383957
+  - name: Object
+    uniqueID: 4012775807
     locked: 0
   - name: Player
-    uniqueID: 1189315299
+    uniqueID: 4191930807
+    locked: 0
+  - name: UI
+    uniqueID: 1658963925
     locked: 0

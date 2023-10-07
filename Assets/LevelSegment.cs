@@ -20,7 +20,7 @@ public class LevelSegment : MonoBehaviour
             if(transform.GetChild(i).GetComponent<Rope>() != null)
             {
                 ropeList.Add(transform.GetChild(i).GetComponent<Rope>());
-            }
+            }            
         }
     }
 
@@ -41,6 +41,16 @@ public class LevelSegment : MonoBehaviour
         for(int i =0; i < ropeList.Count; i++)
         {
             ropeList[i].ReturnOrigin();
+        }
+
+        int count = transform.childCount;
+
+        for (int i = 0; i < count; i++)
+        {
+            if (transform.GetChild(i).gameObject.activeSelf == false)
+            {
+                transform.GetChild(i).gameObject.SetActive(true);
+            }
         }
     }
 }
