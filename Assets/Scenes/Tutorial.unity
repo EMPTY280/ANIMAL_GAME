@@ -144,7 +144,11 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
+<<<<<<< HEAD
   m_IsActive: 1
+=======
+  m_IsActive: 0
+>>>>>>> main
 --- !u!210 &13643765
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -153,7 +157,11 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13643764}
   m_Enabled: 1
+<<<<<<< HEAD
   m_SortingLayerID: 1658963925
+=======
+  m_SortingLayerID: -1687513125
+>>>>>>> main
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_SortAtRoot: 0
@@ -447,7 +455,11 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 198978572}
   m_Enabled: 1
+<<<<<<< HEAD
   m_SortingLayerID: -68168955
+=======
+  m_SortingLayerID: -1929487199
+>>>>>>> main
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_SortAtRoot: 0
@@ -3906,6 +3918,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 7540920714860070696, guid: 13d2b58acad6e8c4e9255d08abe17ced, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -3914,6 +3927,8 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -103036489
       objectReference: {fileID: 0}
+=======
+>>>>>>> main
     - target: {fileID: 8178689257671277789, guid: 13d2b58acad6e8c4e9255d08abe17ced, type: 3}
       propertyPath: jumpPower
       value: 23
