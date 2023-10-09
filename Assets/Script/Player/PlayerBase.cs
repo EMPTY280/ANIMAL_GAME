@@ -9,6 +9,8 @@ using UnityEngine.UIElements;
 public class PlayerBase : MonoBehaviour
 {
     Vector3 originPos;
+    Vector2 originColOff;
+    Vector2 originColSize;
 
     protected Rigidbody2D rigidBody;
     protected Animator animator;
@@ -27,6 +29,8 @@ public class PlayerBase : MonoBehaviour
     protected bool onRope = false;
     [SerializeField] protected bool ableRopeAction = false;
 
+    [SerializeField] protected bool isHit = false;
+
     protected virtual void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -41,7 +45,10 @@ public class PlayerBase : MonoBehaviour
     protected virtual void Start()
     {
         originPos = transform.position;
+        originColOff = boxCollider.offset;
+        originColSize = boxCollider.size;
         rigidBody.gravityScale = gravityPower;
+        LandingSet();
     }
 
     protected virtual void Update()
@@ -117,25 +124,31 @@ public class PlayerBase : MonoBehaviour
     {
         Slide(false);
         rigidBody.velocity = new Vector2(0f, jumpPower);
-        animator.SetBool("OnJump", true);
+        if(ableJump == maxJump)
+        {
+            animator.SetBool("OnJump", true);
+        }
+        else
+        {
+            animator.SetBool("OnDoubleJump", true);
+        }
         onGround = false;
+        boxCollider.offset = new Vector2(0f, 1f);
+        boxCollider.size = new Vector2(originColSize.x, 1f);
         ableJump--;
     }
 
     protected void Slide(bool onSlide)
     {
-        float xTemp = transform.localScale.x;
-        float yTemp = transform.localScale.y;
-
         if (onSlide == true)
         {
-            boxCollider.size = new Vector2(xTemp, yTemp / 2);
-            boxCollider.offset = new Vector2(0, yTemp / 4);
+            boxCollider.offset = originColOff / 2;
+            boxCollider.size = new Vector2(originColSize.x, originColSize.y / 2);
         }
         else
         {
-            boxCollider.size = new Vector2(xTemp, yTemp);
-            boxCollider.offset = new Vector2(0, yTemp / 2);
+            boxCollider.offset = originColOff;
+            boxCollider.size = originColSize;
         }
 
         animator.SetBool("OnSlide", onSlide);
@@ -167,6 +180,9 @@ public class PlayerBase : MonoBehaviour
         onGround = true;
         ableJump = maxJump;
         animator.SetBool("OnJump", false);
+        animator.SetBool("OnDoubleJump", false);
+        boxCollider.offset = originColOff;
+        boxCollider.size = originColSize;
     }
 
     protected void GroundCheck()
@@ -204,5 +220,17 @@ public class PlayerBase : MonoBehaviour
         {
             collision.gameObject.SetActive(false);
         }
+
+        if (collision.gameObject.CompareTag("Obstacle") == true)
+        {
+            isHit = true;
+        }
     }
+
+    public bool GetHit()
+    {
+        return isHit;
+    }
+
+    public void RestoreHit() { isHit = false; }
 }

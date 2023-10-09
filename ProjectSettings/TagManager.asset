@@ -44,8 +44,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: BackGround
+  - name: BackGround_Far
     uniqueID: 4226798341
+    locked: 0
+  - name: BackGround_Middle
+    uniqueID: 1452761323
+    locked: 0
+  - name: BackGround_Close
+    uniqueID: 2596024387
     locked: 0
   - name: Object
     uniqueID: 4012775807
