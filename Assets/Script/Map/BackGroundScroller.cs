@@ -36,11 +36,7 @@ public class BackGroundScroller : MonoBehaviour
         for(int i=0;i<3;i++)
         {
             offset[i] = 0;
-        }
-
-        scrollSpeed[0] = 0.06f;
-        scrollSpeed[1] = 0.08f;
-        scrollSpeed[2] = 0.1f;        
+        }     
     }
 
     private void Start()
@@ -100,5 +96,12 @@ public class BackGroundScroller : MonoBehaviour
         currentSegment[backGroundNum].ReturnToOrigin();
         currentSegment[backGroundNum] = nextSegment[backGroundNum];
         nextSegment[backGroundNum] = segmentGroups[backGroundNum].GetLevelSegment();
+    }
+
+    public void SetSpeed(float speed)
+    {
+        scrollSpeed[0] = speed / 4;
+        scrollSpeed[1] = speed / 3;
+        scrollSpeed[2] = speed / 2;
     }
 }

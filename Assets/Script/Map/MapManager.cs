@@ -5,22 +5,26 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
-    List<MapScroller> maps = new List<MapScroller>();
+    [SerializeField] MapScroller map;
+    [SerializeField] BackGroundScroller background;
 
-    //[SerializeField] private float scrollSpeed = 0.2f;
+    float originSpeed = 0.2f;
 
     private void Awake()
     {
-        int child = transform.childCount;
-
-        for(int i = 0; i < child; i++)
-        {
-            maps.Add(transform.GetChild(i).gameObject.GetComponent<MapScroller>());
-        }
+        map.SetSpeed(originSpeed);
+        background.SetSpeed(originSpeed);
     }
 
     public void SetSpeed(float speed)
     {
-        // list¿¡ ÀÖ´Â ¸Ê ¼Óµµ ÀÏ°ý º¯°æ
+        map.SetSpeed(speed);
+        background.SetSpeed(speed);
+    }
+
+    public void ReturnSpeed()
+    {
+        map.SetSpeed(originSpeed);
+        background.SetSpeed(originSpeed);
     }
 }

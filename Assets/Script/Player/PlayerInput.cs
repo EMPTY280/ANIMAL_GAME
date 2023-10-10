@@ -20,6 +20,8 @@ public class PlayerInput : MonoBehaviour
 
     private void InputP()
     {
+        //if (!IsInGame()) return;
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             player.LeftButtonAction("Down");

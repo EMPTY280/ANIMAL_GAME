@@ -7,8 +7,7 @@ public class TutorialMap : LevelSegmentGroup
 {
     List<LevelSegment> reserveSegment = new List<LevelSegment>();
 
-    int tutoSegNum = 2;
-    public int reserveEnd = 0;
+    [SerializeField] int delay = 0;
 
     protected override void Awake()
     {
@@ -17,53 +16,46 @@ public class TutorialMap : LevelSegmentGroup
 
     public override LevelSegment GetLevelSegment()
     {
+        if(delay > 0)
+        {
+            delay--;
+        }
+
         if(reserveSegment.Count > 0)
         {
-            reserveEnd = 2;
-            return GetReserveSegment();
+            return GetReservedSegment();
         }
-        if(reserveEnd > 0)
-        {
-            reserveEnd--;
-        }
+
         return GetBaseSegment();
     }
 
-    private LevelSegment GetReserveSegment()
+    public void SetDelay(int _delay)
+    {
+        delay = _delay;
+    }
+
+    public void ReserveSegment(int segNum)
+    {
+        reserveSegment.Add(segments[segNum]);        
+    }
+
+    private LevelSegment GetReservedSegment()
     {
         LevelSegment temp = reserveSegment[0];
         reserveSegment.RemoveAt(0);
         return temp;
     }
 
-    public void ReserveSegment()
+    public bool InProgress()
     {
-        reserveSegment.Add(segments[tutoSegNum]);        
-    }
-
-    public void QuestCheck(bool clear)
-    {
-        if(clear == true)
-        {
-            tutoSegNum++;
-        }
+        return (delay > 0);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        if(Input.GetKeyDown(KeyCode.K))
         {
-            QuestCheck(false);
+            ReserveSegment(5);
         }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            QuestCheck(true);
-        }
-    }
-
-    public bool GetReserveEnd()
-    {
-        return (reserveEnd == 0);
     }
 }

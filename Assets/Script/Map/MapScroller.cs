@@ -106,4 +106,9 @@ public class MapScroller : MonoBehaviour
         //nextSegment = GetRandomSegment();
         nextSegment = segmentGroups[currentMap].GetLevelSegment();
     }
+
+    public void SetSpeed(float speed)
+    {
+        scrollSpeed = speed;
+    }
 }

@@ -1,71 +1,106 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class TutorialEvent : MonoBehaviour
 {
     [SerializeField] TutorialMap map;
     [SerializeField] TextMeshProUGUI text;
+    [SerializeField] Image textBack;
     [SerializeField] PlayerBase player;
 
-    int n = 1;
+    CsvReader csvReader = new CsvReader();
+    List<Dialogue> dialogues;
 
-    private void Awake()
-    {
+    [SerializeField] int tutorialNum = 0;
 
-    }
+    string failedText;
 
     // Start is called before the first frame update
     void Start()
     {
-        text.gameObject.SetActive(false);
-        StartCoroutine(TutorialProgress());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        dialogues = csvReader.Read("Tutorial_Dialogue");
+        failedText = "±¦Âú¾Æ! ´Ù½Ã ÇÑ¹ø ÇØº¸ÀÚ.";
+        text.text = string.Empty;
+        textBack.gameObject.SetActive(false);
+        StartCoroutine(TutorialProgress());        
     }
 
     IEnumerator TutorialProgress()
     {
-        float delay = 2f;
+        Dialogue dia = dialogues[tutorialNum];
+        float typeDelay = 0.05f;
+
+        yield return new WaitForSeconds(2f);
+
+        textBack.gameObject.SetActive(true);
+        foreach (char item in dia.text)
+        {
+            text.text += item;
+            yield return new WaitForSeconds(typeDelay);
+        }
+        yield return new WaitForSeconds(dia.textTime);
+
         while (true)
         {
-            if (map.GetReserveEnd() == true)
+            if (map.InProgress() == false)
             {
-                text.gameObject.SetActive(true);
-                text.text = n.ToString();
-                if(player.GetHit() == true)
+                if (player.QuestCheck(dia.questCondition) == true)
                 {
-                    n++;
+                    tutorialNum++;
+                    dia = dialogues[tutorialNum];
+                    text.text = string.Empty;
+                    if (textBack.gameObject.activeSelf == false)
+                    {
+                        textBack.gameObject.SetActive(true);
+                    }
+                    foreach (char item in dia.text)
+                    {
+                        text.text += item;                        
+                        yield return new WaitForSeconds(typeDelay);
+                    }
+                    if (dia.addText != null)
+                    {
+                        text.text += "\n";
+                        foreach (char item in dia.addText)
+                        {
+                            text.text += item;
+                            yield return new WaitForSeconds(typeDelay);
+                        }
+                    }
+                    map.SetDelay(5);
+                    yield return new WaitForSeconds(dia.textTime);
+
+                    if (dia.segNum != 0)
+                    {
+                        textBack.gameObject.SetActive(false);
+                        map.ReserveSegment(dia.segNum);
+                    }
+                    else
+                    {
+                        map.SetDelay(0);
+                    }
                 }
-                player.RestoreHit();
-                map.reserveEnd = 10;
-                yield return new WaitForSeconds(delay);
-                text.gameObject.SetActive(false);
-                yield return new WaitForSeconds(delay);
-                map.ReserveSegment();
-                if (n == 5)
+                else
                 {
-                    yield break;
+                    text.text = string.Empty;
+                    textBack.gameObject.SetActive(true);
+                    foreach (char item in failedText)
+                    {
+                        text.text += item;
+                        yield return new WaitForSeconds(typeDelay);
+                    }
+                    map.SetDelay(5);
+                    yield return new WaitForSeconds(dia.textTime);
+                    textBack.gameObject.SetActive(false);
+                    map.ReserveSegment(dia.segNum);
                 }
             }
             yield return null;
         }
-
-        //if (map.GetReserveEnd() == true)
-        //{
-        //    text.gameObject.SetActive(true);
-        //    text.text = n.ToString();
-        //    n++;
-        //    yield return new WaitForSeconds(delay);
-        //    text.gameObject.SetActive(false);
-        //    map.ReserveSegment();
-        //}
-        //yield return new WaitForSeconds(1f);
     }
 }

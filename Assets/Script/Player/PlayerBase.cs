@@ -16,6 +16,9 @@ public class PlayerBase : MonoBehaviour
     protected Animator animator;
     protected BoxCollider2D boxCollider;
     protected Rope rope;
+    protected SpriteRenderer spriteRenderer;
+
+    protected List<GameObject> effects = new List<GameObject>();
 
     protected LayerMask groundLayer;
     protected LayerMask ropeLayer;
@@ -29,13 +32,26 @@ public class PlayerBase : MonoBehaviour
     protected bool onRope = false;
     [SerializeField] protected bool ableRopeAction = false;
 
-    [SerializeField] protected bool isHit = false;
+    [SerializeField] protected bool obstacleHit = false;
+    [SerializeField] protected bool itemHit = false;
+
+    protected bool ableObstacleHit = true;
 
     protected virtual void Awake()
     {
+        int count = transform.childCount;
+
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        for (int i = 1; i < count; i++) 
+        {
+            effects.Add(transform.GetChild(i).gameObject);
+            effects[i - 1].gameObject.SetActive(false);
+        }
+
         groundLayer = 1 << LayerMask.NameToLayer("Ground");
         ropeLayer = 1 << LayerMask.NameToLayer("Rope");
         ropeEndLayer = 1 << LayerMask.NameToLayer("RopeEnd");
@@ -181,6 +197,7 @@ public class PlayerBase : MonoBehaviour
         ableJump = maxJump;
         animator.SetBool("OnJump", false);
         animator.SetBool("OnDoubleJump", false);
+        animator.SetBool("RescueDown", false);
         boxCollider.offset = originColOff;
         boxCollider.size = originColSize;
     }
@@ -214,23 +231,87 @@ public class PlayerBase : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Item") == true)
         {
             collision.gameObject.SetActive(false);
         }
 
-        if (collision.gameObject.CompareTag("Obstacle") == true)
+        if (collision.gameObject.CompareTag("Obstacle") == true && ableObstacleHit == true)
         {
-            isHit = true;
+            obstacleHit = true;
+            ableObstacleHit = false;            
+            StartCoroutine(ObstacleCrash());
+        }
+
+        if (collision.gameObject.CompareTag("DropZone") == true)
+        {
+            obstacleHit = true;
         }
     }
 
-    public bool GetHit()
+    protected IEnumerator ObstacleCrash()
     {
-        return isHit;
+        float delay = 0.3f;
+        int twinkle = 0;
+
+        animator.SetBool("ObstacleHit", true);
+        yield return new WaitForSeconds(0.1f);
+        animator.SetBool("ObstacleHit", false);
+
+        Color temp = spriteRenderer.color;
+        temp.a = 0.5f;
+        spriteRenderer.color = temp;
+
+        while (true)
+        {
+            yield return new WaitForSeconds(delay);
+            if(twinkle == 6)
+            {
+                temp = spriteRenderer.color;
+                temp.a = 1f;
+                spriteRenderer.color = temp;
+                ableObstacleHit = true;
+                yield break;
+            }
+            else if (twinkle % 2 == 1)
+            {
+                temp = spriteRenderer.color;
+                temp.a = 0.5f;
+                spriteRenderer.color = temp;
+            }
+            else
+            {
+                temp = spriteRenderer.color;
+                temp.a = 1f;
+                spriteRenderer.color = temp;
+            }
+            twinkle++;
+        }
     }
 
-    public void RestoreHit() { isHit = false; }
+    public bool QuestCheck(int condition)
+    {
+        bool tempE = obstacleHit;
+        bool tempI = itemHit;
+
+        obstacleHit = false;
+        itemHit = false;
+
+        switch (condition)
+        {
+            case 0:
+                return true;
+
+            case 1:
+                return (tempE == false);
+
+            case 2:
+                return (tempE == false && tempI == true);
+
+            default:
+                return false;
+        }
+    }
 }

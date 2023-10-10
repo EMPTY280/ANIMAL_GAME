@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Item
   - Obstacle
   - Item
   - FADEOUT
@@ -63,7 +62,4 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 1658963925
-    locked: 0
-  - name: UI
-    uniqueID: 2607454171
     locked: 0
