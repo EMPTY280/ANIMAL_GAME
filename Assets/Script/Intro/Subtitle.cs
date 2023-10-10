@@ -7,20 +7,25 @@ using UnityEngine.Playables;
 public class Subtitle : MonoBehaviour
 {
     private PlayableDirector pd;
+    private float startDelayMax = 1.5f;
+    private float startDelay = 0.0f;
 
     private int line = 0;
     [SerializeField] [TextArea] List<string> subs = new List<string>();
     [SerializeField] Text text = null;
 
-
     private int letterIndex = 0;
     private int letterMax = -1;
 
-    bool canPlay = true;
-    bool playWhenReady = false;
+    private bool canPlay = true;
+    private bool playWhenReady = false;
 
-    float delayMax = 2.0f;
-    float delay = 0f;
+    private float continueDelayMax = 2.0f;
+    private float continueDelay = 0.0f;
+
+    [SerializeField] float fadeSpeed = 1.0f;
+    [SerializeField] Color fadeColor = Color.black;
+    [SerializeField] float fadeDelay = 1.7f;
 
     private void Awake()
     {
@@ -31,10 +36,27 @@ public class Subtitle : MonoBehaviour
 
     private void Update()
     {
-        if (letterIndex == 0)
-            delay += Time.deltaTime;
+        float deltaTime = Time.deltaTime;
 
-        if (delay >= delayMax)
+        // Delay to Start Timeline
+        if (startDelay < startDelayMax)
+        {
+            startDelay += deltaTime;
+            if (startDelay >= startDelayMax)
+                pd.Play();
+        }
+
+        // Skip Intro
+
+        if (Input.anyKeyDown)
+            NextScene();
+
+        // Wait to Continue Subs on Typing Animation is Done.
+
+        if (letterIndex == 0)
+            continueDelay += deltaTime;
+
+        if (continueDelay >= continueDelayMax)
         {
             if (!canPlay)
                 canPlay = true;
@@ -65,7 +87,7 @@ public class Subtitle : MonoBehaviour
 
     IEnumerator TypeAnimation()
     {
-        delay = 0f;
+        continueDelay = 0f;
         canPlay = false;
 
         string currentString = subs[line];
@@ -88,6 +110,6 @@ public class Subtitle : MonoBehaviour
     public void NextScene()
     {
         text.text = " ";
-        GameManager.GetInstance().ChangeScene();
+        GameManager.GetInstance().ChangeScene("Title", fadeSpeed, fadeDelay, fadeColor.r, fadeColor.g, fadeColor.b);
     }
 }

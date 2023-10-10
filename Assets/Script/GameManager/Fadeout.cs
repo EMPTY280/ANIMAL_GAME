@@ -8,12 +8,32 @@ public class Fadeout : MonoBehaviour
     public delegate void Callback();
 
     private Image fadeout;
-    private float fadeSpeed = 1.0f; 
+    private float fadeSpeed = 1.0f;
+    private float transitionDelay = 0.5f;
+
+    public float FadeSpeed
+    {
+        get { return fadeSpeed; }
+        set { fadeSpeed = value; }
+    }
+
+    public Color FadeColor
+    {
+        set
+        {
+            value.a = fadeout.color.a;
+            fadeout.color = value;
+        }
+    }
+
+    public float TransitionDelay
+    {
+        set { transitionDelay = value; }
+    }
 
     private void Awake()
     {
         fadeout = GetComponent<Image>();
-        DontDestroyOnLoad(transform.parent);
     }
 
     public void StartFadeout(Callback c)
@@ -30,9 +50,12 @@ public class Fadeout : MonoBehaviour
     {
         while (fadeout.color.a < 1)
         {
-            fadeout.color = new Color(0, 0, 0, fadeout.color.a + Time.deltaTime * fadeSpeed);
+            Color newColor = fadeout.color;
+            newColor.a += Time.deltaTime * fadeSpeed;
+            fadeout.color = newColor;
             yield return null;
         }
+        yield return new WaitForSecondsRealtime(transitionDelay);
         c();
     }
 
@@ -40,7 +63,9 @@ public class Fadeout : MonoBehaviour
     {
         while (fadeout.color.a > 0)
         {
-            fadeout.color = new Color(0, 0, 0, fadeout.color.a - Time.deltaTime * fadeSpeed);
+            Color newColor = fadeout.color;
+            newColor.a -= Time.deltaTime * fadeSpeed;
+            fadeout.color = newColor;
             yield return null;
         }
     }
