@@ -54,6 +54,7 @@ public class GameManager : ScriptableObject
     private void LoadScene()
     {
         SceneManager.LoadScene(sceneTransitionTarget);
+        blackout.SetBlackout(false);
         fadeout.StartFadein();
         isChangingScene = false;
     }

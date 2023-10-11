@@ -15,7 +15,7 @@ public class Blackout : MonoBehaviour
     public void SetBlackout(bool active)
     {
         Color newColor = blackout.color;
-        newColor.a = 0.65f * (active ? 1.0f : 0.0f);
+        newColor.a = 0.8f * (active ? 1.0f : 0.0f);
         blackout.color = newColor;
     }
 }

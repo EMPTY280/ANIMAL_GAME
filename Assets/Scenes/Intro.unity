@@ -738,9 +738,9 @@ MonoBehaviour:
   - "\uC6B0\uB9AC\uAC00 \uAC00\uC9C4 \uCD94\uC5B5\uC740 \uC6B0\uB9AC\uC758 \uC190\uC73C\uB85C
     \uC9C0\uCF1C\uB0B4\uC57C\uC8E0!"
   text: {fileID: 93719789}
-  fadeSpeed: 0.5
+  fadeSpeed: 0.65
   fadeColor: {r: 1, g: 1, b: 1, a: 1}
-  fadeDelay: 1.7
+  fadeDelay: 1.2
 --- !u!1 &1092204760
 GameObject:
   m_ObjectHideFlags: 0
