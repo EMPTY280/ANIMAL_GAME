@@ -20,16 +20,9 @@ public class CsvReader
 
             dialogue.segNum = int.Parse(row[0]);
             dialogue.textTime = float.Parse(row[1]);
-            dialogue.text = row[2];
-            dialogue.questCondition = int.Parse(row[3]);
-            if(dialogue.textTime == 3)
-            {
-                dialogue.addText = row[4];
-            }
-            else
-            {
-                dialogue.addText = null;
-            }
+            dialogue.questCondition = int.Parse(row[2]);
+            row[3] = row[3].Replace("&", "\n");
+            dialogue.text = row[3].Replace('#', ',');
 
             dialogues.Add(dialogue);
         }

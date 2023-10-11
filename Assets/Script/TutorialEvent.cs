@@ -63,15 +63,6 @@ public class TutorialEvent : MonoBehaviour
                         text.text += item;                        
                         yield return new WaitForSeconds(typeDelay);
                     }
-                    if (dia.addText != null)
-                    {
-                        text.text += "\n";
-                        foreach (char item in dia.addText)
-                        {
-                            text.text += item;
-                            yield return new WaitForSeconds(typeDelay);
-                        }
-                    }
                     map.SetDelay(5);
                     yield return new WaitForSeconds(dia.textTime);
 
