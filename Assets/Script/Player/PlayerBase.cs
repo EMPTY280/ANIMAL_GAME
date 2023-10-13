@@ -138,6 +138,7 @@ public class PlayerBase : MonoBehaviour
 
     protected void Jump()
     {
+        
         Slide(false);
         rigidBody.velocity = new Vector2(0f, jumpPower);
         if(ableJump == maxJump)

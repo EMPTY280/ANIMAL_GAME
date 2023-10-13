@@ -8,7 +8,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] MapScroller map;
     [SerializeField] BackGroundScroller background;
 
-    float originSpeed = 0.2f;
+    [SerializeField] float originSpeed = 0.2f;
 
     private void Awake()
     {

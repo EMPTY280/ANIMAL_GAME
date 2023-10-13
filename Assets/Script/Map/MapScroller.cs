@@ -59,7 +59,7 @@ public class MapScroller : MonoBehaviour
     // 조각 스크롤 / 조각이 화면 밖으로 나갔다면 다음 조각 로드
     private void FixedUpdate()
     {
-        offset += scrollSpeed;
+        offset += scrollSpeed * Time.fixedDeltaTime;
 
         if (offset >= offsetMax)
         {

@@ -63,7 +63,7 @@ public class BackGroundScroller : MonoBehaviour
     {        
         for (int i = 0; i < 3; i++)
         {
-            offset[i] += scrollSpeed[i];
+            offset[i] += scrollSpeed[i] * Time.fixedDeltaTime;
             if (offset[i] >= offsetMax)
             {
                 offset[i] -= offsetMax;

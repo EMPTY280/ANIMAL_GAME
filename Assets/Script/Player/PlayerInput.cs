@@ -6,6 +6,9 @@ public class PlayerInput : MonoBehaviour
 {    
     [SerializeField] PlayerBase player;
 
+    private bool leftButtonDowning;
+    private bool rightButtonDowning;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +18,20 @@ public class PlayerInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        InputP();
+        if (Time.timeScale > 0)
+        {
+            if (leftButtonDowning)
+            {
+                player.LeftButtonAction("Stay");
+            }
+
+            if (rightButtonDowning)
+            {
+                player.RightButtonAction("Stay");
+            }
+        }
+
+        //InputP();
     }
 
     private void InputP()
@@ -46,6 +62,44 @@ public class PlayerInput : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.S))
         {
             player.RightButtonAction("Up");
+        }
+    }
+
+    public void LeftButtonInput(string state)
+    {
+        switch (state)
+        {
+            case "Down":
+                if (Time.timeScale > 0)
+                {
+                    player.LeftButtonAction(state);
+                }
+                leftButtonDowning = true;
+                break;
+
+            case "Up":
+                if (Time.timeScale > 0)
+                {
+                    player.LeftButtonAction(state);
+                }
+                leftButtonDowning = false;
+                break;
+        }
+    }
+
+    public void RightButtonInput(string state)
+    {
+        switch (state)
+        {
+            case "Down":
+                player.RightButtonAction(state);
+                rightButtonDowning = true;
+                break;
+
+            case "Up":
+                player.RightButtonAction(state);
+                rightButtonDowning = false;
+                break;
         }
     }
 }
