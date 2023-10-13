@@ -20,6 +20,7 @@ public class Title : MonoBehaviour
     {
         if (Input.anyKey)
         {
+            GameManager.Instance.ForceFadeIn();
             ActiveTitleMenu();
         }
     }
@@ -29,7 +30,7 @@ public class Title : MonoBehaviour
         if (!isMenuActiive)
         {
             isMenuActiive = true;
-            GameManager.GetInstance().SetBlackout(true);
+            GameManager.Instance.SetBlackout(true);
             OpenMenu();
         }
     }
@@ -57,7 +58,7 @@ public class Title : MonoBehaviour
 
     public void StartGame()
     {
-        GameManager.GetInstance().ChangeScene("TutorialScene");
+        GameManager.Instance.ChangeScene("TutorialScene");
     }
 
     public void ExitGame()

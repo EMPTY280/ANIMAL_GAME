@@ -11,6 +11,8 @@ public class Fadeout : MonoBehaviour
     private float fadeSpeed = 1.0f;
     private float transitionDelay = 0.5f;
 
+    private Coroutine task = null;
+
     public float FadeSpeed
     {
         get { return fadeSpeed; }
@@ -38,12 +40,20 @@ public class Fadeout : MonoBehaviour
 
     public void StartFadeout(Callback c)
     {
-        StartCoroutine(FadeoutCoroutine(c));
+        task = StartCoroutine(FadeoutCoroutine(c));
     }
 
     public void StartFadein()
     {
-        StartCoroutine(FadeinCoroutine());
+        task = StartCoroutine(FadeinCoroutine());
+    }
+
+    public void ForceFadeIn()
+    {
+        if (task == null) return;
+
+        StopCoroutine(task);
+        fadeout.color = new Color(0f, 0f, 0f, 0f);
     }
 
     IEnumerator FadeoutCoroutine(Callback c)
@@ -56,6 +66,7 @@ public class Fadeout : MonoBehaviour
             yield return null;
         }
         yield return new WaitForSecondsRealtime(transitionDelay);
+        task = null;
         c();
     }
 
@@ -68,5 +79,6 @@ public class Fadeout : MonoBehaviour
             fadeout.color = newColor;
             yield return null;
         }
+        task = null;
     }
 }

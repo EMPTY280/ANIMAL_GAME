@@ -7,7 +7,7 @@ using UnityEngine.Playables;
 public class Subtitle : MonoBehaviour
 {
     private PlayableDirector pd;
-    private float startDelayMax = 1.5f;
+    private float startDelayMax = 0.5f;
     private float startDelay = 0.0f;
 
     private int line = 0;
@@ -109,7 +109,6 @@ public class Subtitle : MonoBehaviour
 
     public void NextScene()
     {
-        text.text = " ";
-        GameManager.GetInstance().ChangeScene("Title", fadeSpeed, fadeDelay, fadeColor.r, fadeColor.g, fadeColor.b);
+        GameManager.Instance.ChangeScene("Title", fadeSpeed, fadeDelay, Color.white);
     }
 }
