@@ -50,12 +50,4 @@ public class TutorialMap : LevelSegmentGroup
     {
         return (delay > 0);
     }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-            ReserveSegment(5);
-        }
-    }
 }

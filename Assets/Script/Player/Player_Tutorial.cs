@@ -50,21 +50,9 @@ public class Player_Tutorial : PlayerBase
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Item") == true)
-        {
-            collision.gameObject.SetActive(false);
-        }
-
-        if (collision.gameObject.CompareTag("Obstacle") == true && ableObstacleHit == true)
-        {
-            obstacleHit = true;
-            ableObstacleHit = false;            
-            StartCoroutine(ObstacleCrash());
-        }
-
+        base.OnTriggerEnter2D(collision);
         if (collision.gameObject.CompareTag("DropZone") == true)
         {
-            obstacleHit = true;
             isRescue = true;
             animator.SetTrigger("RescueUp");
         }

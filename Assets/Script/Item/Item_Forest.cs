@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Item_Forest : ItemBase
 {
-    protected override void ItemFunc()
+    protected override void Awake()
     {
-
+        base.Awake();
+        itemID = 3;
     }
 }

@@ -12,6 +12,7 @@ public class PlayerBase : MonoBehaviour
     Vector2 originColOff;
     Vector2 originColSize;
 
+    [SerializeField] protected MapManager mapManager;
     protected Rigidbody2D rigidBody;
     protected Animator animator;
     protected BoxCollider2D boxCollider;
@@ -77,6 +78,11 @@ public class PlayerBase : MonoBehaviour
         if (transform.rotation != Quaternion.Euler(0, 0, 0))
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            StartCoroutine(ItemAbility(1));
         }
     }
 
@@ -232,11 +238,52 @@ public class PlayerBase : MonoBehaviour
         }
     }
 
+    protected IEnumerator ItemAbility(int itemID)
+    {        
+        switch (itemID)
+        {
+            case 0:
+                
+                yield break;
+
+            case 1:
+                WaitForSeconds delay = new WaitForSeconds(0.2f);
+                mapManager.SetSpeed(2f);
+                ableObstacleHit = false;
+                effects[0].SetActive(true);
+                yield return new WaitForSeconds(2.4f);
+                mapManager.ReturnSpeed();
+                effects[0].SetActive(false);
+                for (int i = 0; i < 4; i++) 
+                {
+                    SpriteTwinkle();
+                    yield return delay;
+                }
+                ableObstacleHit = true;
+                yield break;
+
+            case 2:
+                yield break;
+
+            case 3:
+                yield break;
+
+            case 4:
+                yield break;
+
+            default:
+                yield break;
+        }
+    }
+
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Item") == true)
         {
+            ItemBase item = collision.gameObject.GetComponent<ItemBase>();
+            StartCoroutine(ItemAbility(item.GetItemID()));
             collision.gameObject.SetActive(false);
+            itemHit = true;
         }
 
         if (collision.gameObject.CompareTag("Obstacle") == true && ableObstacleHit == true)
@@ -254,42 +301,60 @@ public class PlayerBase : MonoBehaviour
 
     protected IEnumerator ObstacleCrash()
     {
-        float delay = 0.3f;
+        WaitForSeconds delay = new WaitForSeconds(0.2f);
         int twinkle = 0;
 
         animator.SetBool("ObstacleHit", true);
         yield return new WaitForSeconds(0.1f);
         animator.SetBool("ObstacleHit", false);
 
-        Color temp = spriteRenderer.color;
-        temp.a = 0.5f;
-        spriteRenderer.color = temp;
+        SpriteTwinkle();
+        //Color temp = spriteRenderer.color;
+        //temp.a = 0.5f;
+        //spriteRenderer.color = temp;
 
-        while (true)
+        while (twinkle < 7)
         {
-            yield return new WaitForSeconds(delay);
-            if(twinkle == 6)
-            {
-                temp = spriteRenderer.color;
-                temp.a = 1f;
-                spriteRenderer.color = temp;
-                ableObstacleHit = true;
-                yield break;
-            }
-            else if (twinkle % 2 == 1)
-            {
-                temp = spriteRenderer.color;
-                temp.a = 0.5f;
-                spriteRenderer.color = temp;
-            }
-            else
-            {
-                temp = spriteRenderer.color;
-                temp.a = 1f;
-                spriteRenderer.color = temp;
-            }
+            yield return delay;
+            SpriteTwinkle();
+            //if(twinkle == 6)
+            //{
+            //    temp = spriteRenderer.color;
+            //    temp.a = 1f;
+            //    spriteRenderer.color = temp;
+            //    ableObstacleHit = true;
+            //    yield break;
+            //}
+            //else if (twinkle % 2 == 1)
+            //{
+            //    temp = spriteRenderer.color;
+            //    temp.a = 0.5f;
+            //    spriteRenderer.color = temp;
+            //}
+            //else
+            //{
+            //    temp = spriteRenderer.color;
+            //    temp.a = 1f;
+            //    spriteRenderer.color = temp;
+            //}
             twinkle++;
         }
+        ableObstacleHit = true;
+        yield break;
+    }
+
+    void SpriteTwinkle()
+    {
+        Color temp = spriteRenderer.color;
+        if( temp.a == 1f )
+        {
+            temp.a = 0.5f;
+        }
+        else
+        {
+            temp.a = 1f;
+        }
+        spriteRenderer.color = temp;
     }
 
     public bool QuestCheck(int condition)

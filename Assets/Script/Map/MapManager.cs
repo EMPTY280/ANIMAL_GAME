@@ -16,10 +16,10 @@ public class MapManager : MonoBehaviour
         background.SetSpeed(originSpeed);
     }
 
-    public void SetSpeed(float speed)
+    public void SetSpeed(float times)
     {
-        map.SetSpeed(speed);
-        background.SetSpeed(speed);
+        map.SetSpeed(originSpeed * times);
+        background.SetSpeed(originSpeed * times);
     }
 
     public void ReturnSpeed()

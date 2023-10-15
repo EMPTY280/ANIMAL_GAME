@@ -4,26 +4,18 @@ using UnityEngine;
 
 public class ItemBase : MonoBehaviour
 {
-    GameObject effectObject;
+    Vector3 originPos;
+    [SerializeField] protected int itemID; // 0 = 클리어아이템, 1 = 불, 2 = 물, 3 = 숲, 4 = 천사
 
-    private void Awake()
+    protected virtual void Awake()
     {
-        GameObject prefab = Resources.Load<GameObject>("Prefabs/Item_Water_Effect");
-        effectObject = Instantiate(prefab);
+        originPos = transform.position;
     }
 
-    private void OnDisable()
+    private void OnEnable()
     {
-        ItemFunc();
-        if(effectObject != null)
-        {
-            effectObject.SetActive(true);
-            effectObject.transform.position = transform.position;
-        }
+        transform.position = originPos;
     }
 
-    protected virtual void ItemFunc()
-    {
-
-    }
+    public int GetItemID() { return itemID; }
 }

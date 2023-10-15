@@ -26,7 +26,7 @@ public class TutorialEvent : MonoBehaviour
         failedText = "±¦Âú¾Æ! ´Ù½Ã ÇÑ¹ø ÇØº¸ÀÚ.";
         text.text = string.Empty;
         textBack.gameObject.SetActive(false);
-        StartCoroutine(TutorialProgress());        
+        StartCoroutine(TutorialProgress());
     }
 
     IEnumerator TutorialProgress()
@@ -37,6 +37,9 @@ public class TutorialEvent : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         textBack.gameObject.SetActive(true);
+        Rect spot = new Rect(0,0,100f,100f);
+        
+        GameManager.Instance.SetBlackout(true,spot);
         foreach (char item in dia.text)
         {
             text.text += item;
@@ -91,6 +94,15 @@ public class TutorialEvent : MonoBehaviour
                 }
             }
             yield return null;
+        }
+    }
+
+    void Tutorial_Spotlight(int tutoNum)
+    {
+        switch (tutoNum)
+        {
+            case 2:
+                break;
         }
     }
 }
