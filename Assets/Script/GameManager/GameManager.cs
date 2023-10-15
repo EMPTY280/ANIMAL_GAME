@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public struct GameResult
+{
+    public int collectedItems;
+    public string stageName;
+    public bool isClear;
+}
+
 public class GameManager : ScriptableObject
 {
     private static GameManager instance = null;
@@ -17,6 +24,8 @@ public class GameManager : ScriptableObject
 
     private Blackout blackout;
     private Spotlight spotlight = null;
+
+    private GameResult lastGame;
 
     /// <summary>
     /// Returns GameManager singleton instance.
@@ -104,5 +113,24 @@ public class GameManager : ScriptableObject
     public void SetPause(bool active)
     {
         Time.timeScale = active ? 0.0f : 1.0f;
+    }
+
+    /// <summary>
+    /// Save Game Result
+    /// </summary>
+    /// <param name="game">structure that contains collectedItems, stageName, and isClear</param>
+    public void SaveGameResult(GameResult game)
+    {
+        lastGame.collectedItems = game.collectedItems;
+        lastGame.stageName = game.stageName;
+        lastGame.isClear = game.isClear;
+    }
+
+    /// <summary>
+    /// Get Result of Latest Game
+    /// </summary>
+    public GameResult GetLastGameResult()
+    {
+        return lastGame;
     }
 }
