@@ -1633,7 +1633,7 @@ MonoBehaviour:
   text: {fileID: 1427736450}
   textBack: {fileID: 1328116423}
   player: {fileID: 1988729780}
-  tutorialNum: 0
+  tutorialNum: 8
 --- !u!4 &660318407
 Transform:
   m_ObjectHideFlags: 0
