@@ -29,6 +29,7 @@ public class PlayerInput : MonoBehaviour
             {
                 player.RightButtonAction("Stay");
             }
+
         }
 
         //InputP();

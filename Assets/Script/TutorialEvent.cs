@@ -12,8 +12,8 @@ public class TutorialEvent : MonoBehaviour
     [SerializeField] Image textBack;
     [SerializeField] PlayerBase player;
 
-    CsvReader csvReader = new CsvReader();
-    List<Dialogue> dialogues;
+    //CsvReader csvReader = new CsvReader();
+    //List<Dialogue> dialogues;
 
     [SerializeField] int tutorialNum = 0;
 
@@ -22,7 +22,7 @@ public class TutorialEvent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dialogues = csvReader.Read("Tutorial_Dialogue");
+        //dialogues = csvReader.Read("Tutorial_Dialogue");
         failedText = "±¦Âú¾Æ! ´Ù½Ã ÇÑ¹ø ÇØº¸ÀÚ.";
         text.text = string.Empty;
         textBack.gameObject.SetActive(false);
@@ -31,7 +31,8 @@ public class TutorialEvent : MonoBehaviour
 
     IEnumerator TutorialProgress()
     {
-        Dialogue dia = dialogues[tutorialNum];
+        //Dialogue dia = dialogues[tutorialNum];
+        EventData eventData = EventManager.Instance.eventCase[tutorialNum];
         float typeDelay = 0.05f;
 
         yield return new WaitForSeconds(2f);
@@ -40,38 +41,38 @@ public class TutorialEvent : MonoBehaviour
         Rect spot = new Rect(0,0,100f,100f);
         
         GameManager.Instance.SetBlackout(true,spot);
-        foreach (char item in dia.text)
+        foreach (char item in eventData.eventText)
         {
             text.text += item;
             yield return new WaitForSeconds(typeDelay);
         }
-        yield return new WaitForSeconds(dia.textTime);
+        yield return new WaitForSeconds(eventData.time);
 
         while (true)
         {
             if (map.InProgress() == false)
             {
-                if (player.QuestCheck(dia.questCondition) == true)
+                if (player.QuestCheck(eventData.condition) == true)
                 {
                     tutorialNum++;
-                    dia = dialogues[tutorialNum];
+                    eventData = EventManager.Instance.eventCase[tutorialNum];
                     text.text = string.Empty;
                     if (textBack.gameObject.activeSelf == false)
                     {
                         textBack.gameObject.SetActive(true);
                     }
-                    foreach (char item in dia.text)
+                    foreach (char item in eventData.eventText)
                     {
                         text.text += item;                        
                         yield return new WaitForSeconds(typeDelay);
                     }
                     map.SetDelay(5);
-                    yield return new WaitForSeconds(dia.textTime);
+                    yield return new WaitForSeconds(eventData.time);
 
-                    if (dia.segNum != 0)
+                    if (eventData.pieceIndex != 0)
                     {
                         textBack.gameObject.SetActive(false);
-                        map.ReserveSegment(dia.segNum);
+                        map.ReserveSegment(eventData.pieceIndex);
                     }
                     else
                     {
@@ -88,9 +89,9 @@ public class TutorialEvent : MonoBehaviour
                         yield return new WaitForSeconds(typeDelay);
                     }
                     map.SetDelay(5);
-                    yield return new WaitForSeconds(dia.textTime);
+                    yield return new WaitForSeconds(eventData.time);
                     textBack.gameObject.SetActive(false);
-                    map.ReserveSegment(dia.segNum);
+                    map.ReserveSegment(eventData.pieceIndex);
                 }
             }
             yield return null;

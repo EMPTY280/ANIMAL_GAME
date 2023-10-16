@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+//using System.Numerics;
 using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -247,7 +248,7 @@ public class PlayerBase : MonoBehaviour
                 yield break;
 
             case 1:
-                WaitForSeconds delay = new WaitForSeconds(0.2f);
+                WaitForSeconds delay = new WaitForSeconds(0.2f); ;// EventManager.Instance.waitForSeconds;//new WaitForSeconds(0.2f);
                 mapManager.SetSpeed(2f);
                 ableObstacleHit = false;
                 effects[0].SetActive(true);
@@ -357,6 +358,16 @@ public class PlayerBase : MonoBehaviour
         spriteRenderer.color = temp;
     }
 
+
+    IEnumerator TestCoruetine(float time)
+    {
+        float delay = 0.0f;
+        while (delay < time) 
+        {
+            delay += Time.deltaTime;
+            yield return null;
+        }
+    }
     public bool QuestCheck(int condition)
     {
         bool tempE = obstacleHit;
