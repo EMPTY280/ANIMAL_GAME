@@ -299,6 +299,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c7d41018d434741a0cabfe7b00ca91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ropeList: []
+  itemList: []
 --- !u!4 &126786724 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7912271349312662708, guid: 4a222b07e0d9dc543a91fc74c9e7ce43, type: 3}
@@ -470,6 +472,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c7d41018d434741a0cabfe7b00ca91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ropeList: []
+  itemList: []
 --- !u!212 &136968626
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -877,6 +881,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c7d41018d434741a0cabfe7b00ca91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ropeList: []
+  itemList: []
 --- !u!4 &269692770 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7912271349312662708, guid: 4a222b07e0d9dc543a91fc74c9e7ce43, type: 3}
@@ -1099,6 +1105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c7d41018d434741a0cabfe7b00ca91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ropeList: []
+  itemList: []
 --- !u!212 &296058131
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1203,6 +1211,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &388261336 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4658959508974104364, guid: 13d2b58acad6e8c4e9255d08abe17ced, type: 3}
+  m_PrefabInstance: {fileID: 1843889260}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &442143026
 GameObject:
   m_ObjectHideFlags: 0
@@ -1252,6 +1265,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c7d41018d434741a0cabfe7b00ca91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ropeList: []
+  itemList: []
 --- !u!1001 &453239379
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1354,6 +1369,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c7d41018d434741a0cabfe7b00ca91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ropeList: []
+  itemList: []
 --- !u!1 &502599414
 GameObject:
   m_ObjectHideFlags: 0
@@ -1762,6 +1779,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c7d41018d434741a0cabfe7b00ca91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ropeList: []
+  itemList: []
 --- !u!4 &752871110 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1866730195521542951, guid: 8fbd3971a6e0c3247a63ab2fe3c563b7, type: 3}
@@ -1869,6 +1888,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c7d41018d434741a0cabfe7b00ca91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ropeList: []
+  itemList: []
 --- !u!1 &877730314
 GameObject:
   m_ObjectHideFlags: 0
@@ -2187,6 +2208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c7d41018d434741a0cabfe7b00ca91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ropeList: []
+  itemList: []
 --- !u!212 &934502219
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3190,6 +3213,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c7d41018d434741a0cabfe7b00ca91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ropeList: []
+  itemList: []
 --- !u!212 &1333814537
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3294,6 +3319,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c7d41018d434741a0cabfe7b00ca91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ropeList:
+  - {fileID: 1693662783}
+  itemList: []
 --- !u!4 &1395521776 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7912271349312662708, guid: 4a222b07e0d9dc543a91fc74c9e7ce43, type: 3}
@@ -3344,6 +3372,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c7d41018d434741a0cabfe7b00ca91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ropeList: []
+  itemList: []
 --- !u!1 &1427736448
 GameObject:
   m_ObjectHideFlags: 0
@@ -3710,6 +3740,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c7d41018d434741a0cabfe7b00ca91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ropeList: []
+  itemList: []
 --- !u!4 &1479733674 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7912271349312662708, guid: 4a222b07e0d9dc543a91fc74c9e7ce43, type: 3}
@@ -3760,6 +3792,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c7d41018d434741a0cabfe7b00ca91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ropeList: []
+  itemList: []
 --- !u!212 &1564580846
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3874,6 +3908,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 101528791955887486, guid: e4d33ec08c962a341981730175c157d7, type: 3}
   m_PrefabInstance: {fileID: 1401467893462957395}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1693662783 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5560119161808655509, guid: e4d33ec08c962a341981730175c157d7, type: 3}
+  m_PrefabInstance: {fileID: 1401467893462957395}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0038cf902c3dab40a377991e7a602cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1698090008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3976,6 +4021,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c7d41018d434741a0cabfe7b00ca91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ropeList: []
+  itemList: []
 --- !u!212 &1727798978
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4268,6 +4315,10 @@ PrefabInstance:
       value: Tutorial Character
       objectReference: {fileID: 0}
     - target: {fileID: 4658959508974104364, guid: 13d2b58acad6e8c4e9255d08abe17ced, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658959508974104364, guid: 13d2b58acad6e8c4e9255d08abe17ced, type: 3}
       propertyPath: m_TagString
       value: Magnet
       objectReference: {fileID: 0}
@@ -4319,6 +4370,10 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8178689257671277789, guid: 13d2b58acad6e8c4e9255d08abe17ced, type: 3}
+      propertyPath: magnet
+      value: 
+      objectReference: {fileID: 388261336}
     - target: {fileID: 8178689257671277789, guid: 13d2b58acad6e8c4e9255d08abe17ced, type: 3}
       propertyPath: mapManager
       value: 
@@ -4592,6 +4647,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c7d41018d434741a0cabfe7b00ca91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ropeList: []
+  itemList: []
 --- !u!1 &1900041146
 GameObject:
   m_ObjectHideFlags: 0
@@ -4771,6 +4828,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c7d41018d434741a0cabfe7b00ca91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ropeList: []
+  itemList: []
 --- !u!114 &1988729780 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8178689257671277789, guid: 13d2b58acad6e8c4e9255d08abe17ced, type: 3}
@@ -5137,6 +5196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c7d41018d434741a0cabfe7b00ca91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ropeList: []
+  itemList: []
 --- !u!1 &2108291654
 GameObject:
   m_ObjectHideFlags: 0

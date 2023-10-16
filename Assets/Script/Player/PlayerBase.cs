@@ -21,6 +21,7 @@ public class PlayerBase : MonoBehaviour
     protected SpriteRenderer spriteRenderer;
 
     protected List<GameObject> effects = new List<GameObject>();
+    [SerializeField] protected GameObject magnet;
 
     protected LayerMask groundLayer;
     protected LayerMask ropeLayer;
@@ -67,6 +68,8 @@ public class PlayerBase : MonoBehaviour
         originColSize = boxCollider.size;
         rigidBody.gravityScale = gravityPower;
         LandingSet();
+
+        magnet.SetActive(false);
     }
 
     protected virtual void Update()
@@ -240,7 +243,8 @@ public class PlayerBase : MonoBehaviour
     }
 
     protected IEnumerator ItemAbility(int itemID)
-    {        
+    {
+        WaitForSeconds delay = new WaitForSeconds(0.2f); ;// EventManager.Instance.waitForSeconds;//new WaitForSeconds(0.2f);
         switch (itemID)
         {
             case 0:
@@ -248,11 +252,10 @@ public class PlayerBase : MonoBehaviour
                 yield break;
 
             case 1:
-                WaitForSeconds delay = new WaitForSeconds(0.2f); ;// EventManager.Instance.waitForSeconds;//new WaitForSeconds(0.2f);
                 mapManager.SetSpeed(2f);
                 ableObstacleHit = false;
                 effects[0].SetActive(true);
-                yield return new WaitForSeconds(2.4f);
+                yield return new WaitForSeconds(3f);
                 mapManager.ReturnSpeed();
                 effects[0].SetActive(false);
                 for (int i = 0; i < 4; i++) 
@@ -264,12 +267,27 @@ public class PlayerBase : MonoBehaviour
                 yield break;
 
             case 2:
+                magnet.gameObject.SetActive(true);
+                effects[1].SetActive(true);
+                yield return new WaitForSeconds(5f);
+                magnet.gameObject.SetActive(false);
+                effects[1].SetActive(false);
                 yield break;
 
             case 3:
                 yield break;
 
             case 4:
+                ableObstacleHit = false;
+                effects[3].SetActive(true);
+                yield return new WaitForSeconds(5f);
+                effects[3].SetActive(false);
+                for (int i = 0; i < 4; i++)
+                {
+                    SpriteTwinkle();
+                    yield return delay;
+                }
+                ableObstacleHit = true;
                 yield break;
 
             default:
