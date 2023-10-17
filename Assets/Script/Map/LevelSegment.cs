@@ -10,9 +10,39 @@ public class LevelSegment : MonoBehaviour
     [SerializeField] List<Rope> ropeList = new List<Rope>();
     [SerializeField] List<ItemBase> itemList = new List<ItemBase>();
 
+    SpriteRenderer leftGround;
+    [SerializeField] SpriteRenderer rightGround;
+
+    [SerializeField] float segmentWidth;
+
     private void Awake()
     {
         originPos = transform.position;
+        if(transform.childCount > 0)
+            leftGround = transform.GetChild(0).GetComponent<SpriteRenderer>();
+
+        if (leftGround != null && rightGround != null)
+        {
+            segmentWidth = (rightGround.bounds.center.x + rightGround.bounds.size.x / 2)
+                           - (leftGround.bounds.center.x - leftGround.bounds.size.x / 2);
+        }
+        else if (leftGround != null && rightGround == null)
+        {
+            segmentWidth = leftGround.bounds.size.x;
+        }
+    }
+
+    private void Start()
+    {        
+        //if(leftGround != null && rightGround != null)
+        //{
+        //    segmentWidth = (rightGround.bounds.center.x + rightGround.bounds.size.x / 2)
+        //                   - (leftGround.bounds.center.x - leftGround.bounds.size.x / 2);
+        //}
+        //else if (leftGround != null && rightGround == null)
+        //{
+        //    segmentWidth = leftGround.bounds.size.x;
+        //}
     }
 
     // 에디터에서 가상의 사각형 (맵 세그먼트 범위 표시)
@@ -20,7 +50,7 @@ public class LevelSegment : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(transform.position, new Vector3(22f, 10f, 1f));
+        Gizmos.DrawWireCube(transform.position, new Vector3(segmentWidth, 10f, 1f));
     }
 #endif
 
@@ -44,4 +74,6 @@ public class LevelSegment : MonoBehaviour
             itemList[i].ReturnOrigin();
         }
     }
+
+    public float GetWidth() { return  segmentWidth; }
 }

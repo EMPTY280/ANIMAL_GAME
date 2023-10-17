@@ -38,9 +38,6 @@ public class TutorialEvent : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         textBack.gameObject.SetActive(true);
-        Rect spot = new Rect(0,0,100f,100f);
-        
-        GameManager.Instance.SetBlackout(true,spot);
         foreach (char item in eventData.eventText)
         {
             text.text += item;
@@ -61,12 +58,12 @@ public class TutorialEvent : MonoBehaviour
                     {
                         textBack.gameObject.SetActive(true);
                     }
+                    Tutorial_Spotlight(tutorialNum, true);
                     foreach (char item in eventData.eventText)
                     {
                         text.text += item;                        
                         yield return new WaitForSeconds(typeDelay);
                     }
-                    map.SetDelay(5);
                     yield return new WaitForSeconds(eventData.time);
 
                     if (eventData.pieceIndex != 0)
@@ -74,10 +71,7 @@ public class TutorialEvent : MonoBehaviour
                         textBack.gameObject.SetActive(false);
                         map.ReserveSegment(eventData.pieceIndex);
                     }
-                    else
-                    {
-                        map.SetDelay(0);
-                    }
+                    Tutorial_Spotlight(tutorialNum, false);
                 }
                 else
                 {
@@ -88,7 +82,6 @@ public class TutorialEvent : MonoBehaviour
                         text.text += item;
                         yield return new WaitForSeconds(typeDelay);
                     }
-                    map.SetDelay(5);
                     yield return new WaitForSeconds(eventData.time);
                     textBack.gameObject.SetActive(false);
                     map.ReserveSegment(eventData.pieceIndex);
@@ -98,12 +91,29 @@ public class TutorialEvent : MonoBehaviour
         }
     }
 
-    void Tutorial_Spotlight(int tutoNum)
+    void Tutorial_Spotlight(int tutoNum, bool state)
     {
-        switch (tutoNum)
+        if(state)
         {
-            case 2:
-                break;
+            Rect spot;
+            switch (tutoNum)
+            {
+                case 1:
+                    spot = new Rect(40f, -20f, 120f, 80f);
+                    GameManager.Instance.SetBlackout(true, spot);
+                    break;
+
+                case 6:
+                    spot = new Rect(1080f, -20f, 180f, 80f);
+                    GameManager.Instance.SetBlackout(true, spot);
+                    break;
+                default:
+                    return;
+            }
+        }
+        else
+        {
+            GameManager.Instance.SetBlackout(false);
         }
     }
 }

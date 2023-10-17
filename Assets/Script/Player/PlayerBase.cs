@@ -14,6 +14,9 @@ public class PlayerBase : MonoBehaviour
     Vector2 originColSize;
 
     [SerializeField] protected MapManager mapManager;
+    [SerializeField] protected GameObject magnet;
+    [SerializeField] protected GameObject dropPrev;
+
     protected Rigidbody2D rigidBody;
     protected Animator animator;
     protected BoxCollider2D boxCollider;
@@ -21,24 +24,29 @@ public class PlayerBase : MonoBehaviour
     protected SpriteRenderer spriteRenderer;
 
     protected List<GameObject> effects = new List<GameObject>();
-    [SerializeField] protected GameObject magnet;
 
     protected LayerMask groundLayer;
     protected LayerMask ropeLayer;
     protected LayerMask ropeEndLayer;
 
-    [SerializeField] protected float jumpPower = 23f;
+    protected float jumpPower = 23f;
     protected float gravityPower = 10f;
+
     protected int maxJump = 2;
-    [SerializeField] protected int ableJump;
-    [SerializeField] protected bool onGround = false;
+    protected int ableJump;
+    protected int clearItem;
+    protected bool itemDouble = false;
+
+    protected bool onGround = false;
     protected bool onRope = false;
-    [SerializeField] protected bool ableRopeAction = false;
-
-    [SerializeField] protected bool obstacleHit = false;
-    [SerializeField] protected bool itemHit = false;
-
+    protected bool isRescue = false;
+    protected bool ableRopeAction = false;
+    protected bool ableRescue = false;
     protected bool ableObstacleHit = true;
+
+    protected bool obstacleHit = false;
+    protected bool itemHit = false;
+
 
     protected virtual void Awake()
     {
@@ -63,13 +71,17 @@ public class PlayerBase : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        clearItem = 0;
+
         originPos = transform.position;
         originColOff = boxCollider.offset;
         originColSize = boxCollider.size;
         rigidBody.gravityScale = gravityPower;
+
         LandingSet();
 
         magnet.SetActive(false);
+        dropPrev.SetActive(false);
     }
 
     protected virtual void Update()
@@ -87,6 +99,25 @@ public class PlayerBase : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.K))
         {
             StartCoroutine(ItemAbility(1));
+        }
+
+        if (isRescue == true)
+        {
+            boxCollider.enabled = false;
+            rigidBody.gravityScale = 0;
+            rigidBody.velocity = new Vector2(0, 5f);
+            if (transform.position.y >= -1)
+            {
+                boxCollider.enabled = true;
+                rigidBody.gravityScale = gravityPower;
+                isRescue = false;
+                ableRescue = false;
+                animator.SetBool("RescueDown", true);
+                if (effects[2].activeSelf == true)
+                {
+                    effects[2].SetActive(false);
+                }
+            }
         }
     }
 
@@ -247,10 +278,6 @@ public class PlayerBase : MonoBehaviour
         WaitForSeconds delay = new WaitForSeconds(0.2f); ;// EventManager.Instance.waitForSeconds;//new WaitForSeconds(0.2f);
         switch (itemID)
         {
-            case 0:
-                
-                yield break;
-
             case 1:
                 mapManager.SetSpeed(2f);
                 ableObstacleHit = false;
@@ -275,12 +302,16 @@ public class PlayerBase : MonoBehaviour
                 yield break;
 
             case 3:
+                effects[2].SetActive(true);
+                ableRescue = true;
                 yield break;
 
             case 4:
                 ableObstacleHit = false;
+                itemDouble = true;
                 effects[3].SetActive(true);
                 yield return new WaitForSeconds(5f);
+                itemDouble = false;
                 effects[3].SetActive(false);
                 for (int i = 0; i < 4; i++)
                 {
@@ -300,9 +331,20 @@ public class PlayerBase : MonoBehaviour
         if(collision.gameObject.CompareTag("Item") == true)
         {
             ItemBase item = collision.gameObject.GetComponent<ItemBase>();
-            StartCoroutine(ItemAbility(item.GetItemID()));
+            int id = item.GetItemID();
+            if(id == 0)
+            {
+                if (itemDouble == true)
+                    clearItem += 2;
+                else
+                    clearItem++;
+            }
+            else
+            {
+                StartCoroutine(ItemAbility(id));
+                itemHit = true;
+            }
             collision.gameObject.SetActive(false);
-            itemHit = true;
         }
 
         if (collision.gameObject.CompareTag("Obstacle") == true && ableObstacleHit == true)
@@ -315,6 +357,11 @@ public class PlayerBase : MonoBehaviour
         if (collision.gameObject.CompareTag("DropZone") == true)
         {
             obstacleHit = true;
+            if(ableRescue == true)
+            {
+                isRescue = true;
+                animator.SetTrigger("RescueUp");
+            }
         }
     }
 

@@ -36,7 +36,8 @@ public class TutorialMap : LevelSegmentGroup
 
     public void ReserveSegment(int segNum)
     {
-        reserveSegment.Add(segments[segNum]);        
+        reserveSegment.Add(segments[segNum]);
+        delay = 3;
     }
 
     private LevelSegment GetReservedSegment()

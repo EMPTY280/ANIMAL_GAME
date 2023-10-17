@@ -21,7 +21,7 @@ public class MapScroller : MonoBehaviour
     [SerializeField] float scrollSpeed = 0.2f;
     // 현재 스크롤중인 조각의 위치 및 이동 임계값
     float offset = 0.0f;
-    [SerializeField] protected float offsetMax = 22.0f;
+    [SerializeField] protected float offsetMax;
 
 
     protected void Awake()
@@ -52,7 +52,7 @@ public class MapScroller : MonoBehaviour
         //SetSegmentPos();
         currentSegment = segmentGroups[currentMap].GetLevelSegment();
         nextSegment = segmentGroups[currentMap].GetLevelSegment();
-
+        offsetMax = (nextSegment.GetWidth() + currentSegment.GetWidth()) / 2;
         SetSegmentPos();
     }
 
@@ -105,6 +105,7 @@ public class MapScroller : MonoBehaviour
         currentSegment = nextSegment;
         //nextSegment = GetRandomSegment();
         nextSegment = segmentGroups[currentMap].GetLevelSegment();
+        offsetMax = (nextSegment.GetWidth() + currentSegment.GetWidth()) / 2;
     }
 
     public void SetSpeed(float speed)

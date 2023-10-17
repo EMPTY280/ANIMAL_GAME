@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Player_Tutorial : PlayerBase
 {
-    bool isRescue = false;
-
     protected override void Awake()
     {
         base.Awake();
@@ -19,18 +17,7 @@ public class Player_Tutorial : PlayerBase
 
     protected override void Update()
     {
-        base.Update();
-        if (isRescue == true)
-        {
-            rigidBody.gravityScale = 0;
-            rigidBody.velocity = new Vector2(0, 5f);
-            if(transform.position.y >= -1)
-            {
-                rigidBody.gravityScale = gravityPower;
-                isRescue = false;
-                animator.SetBool("RescueDown", true);
-            }
-        }        
+        base.Update();     
     }
 
     protected override void FixedUpdate()
