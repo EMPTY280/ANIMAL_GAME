@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using TMPro;
 //using System.Numerics;
 using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
@@ -16,6 +17,7 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] protected MapManager mapManager;
     [SerializeField] protected GameObject magnet;
     [SerializeField] protected GameObject dropPrev;
+    [SerializeField] protected TextMeshProUGUI clearItemText;
 
     protected Rigidbody2D rigidBody;
     protected Animator animator;
@@ -57,10 +59,10 @@ public class PlayerBase : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        for (int i = 1; i < count; i++) 
+        for (int i = 0; i < count; i++) 
         {
             effects.Add(transform.GetChild(i).gameObject);
-            effects[i - 1].gameObject.SetActive(false);
+            effects[i].gameObject.SetActive(false);
         }
 
         groundLayer = 1 << LayerMask.NameToLayer("Ground");
@@ -86,7 +88,7 @@ public class PlayerBase : MonoBehaviour
 
     protected virtual void Update()
     {
-        if(transform.position.x != originPos.x)
+        if (transform.position.x != originPos.x)
         {
             transform.position = new Vector2(originPos.x, transform.position.y);
         }
@@ -94,11 +96,6 @@ public class PlayerBase : MonoBehaviour
         if (transform.rotation != Quaternion.Euler(0, 0, 0))
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-            StartCoroutine(ItemAbility(1));
         }
 
         if (isRescue == true)
@@ -118,6 +115,11 @@ public class PlayerBase : MonoBehaviour
                     effects[2].SetActive(false);
                 }
             }
+        }
+
+        if(magnet.activeSelf == true)
+        {
+            magnet.transform.position = transform.position;
         }
     }
 
@@ -246,9 +248,13 @@ public class PlayerBase : MonoBehaviour
 
     protected void GroundCheck()
     {
-        if (rigidBody.velocity.y < 0 && Physics2D.Raycast(transform.position, Vector2.down, 0.8f, groundLayer))
+        if (rigidBody.velocity.y <= 0 && Physics2D.Raycast(transform.position, Vector2.down, 0.8f, groundLayer) && onGround == false)
         {
             LandingSet();
+        }
+        else if(onGround == true && Physics2D.Raycast(transform.position, Vector2.down, 0.8f, groundLayer) == false)
+        {
+            onGround = false;
         }
     }
 
@@ -282,6 +288,7 @@ public class PlayerBase : MonoBehaviour
                 mapManager.SetSpeed(2f);
                 ableObstacleHit = false;
                 effects[0].SetActive(true);
+                dropPrev.gameObject.SetActive(true);
                 yield return new WaitForSeconds(3f);
                 mapManager.ReturnSpeed();
                 effects[0].SetActive(false);
@@ -290,6 +297,7 @@ public class PlayerBase : MonoBehaviour
                     SpriteTwinkle();
                     yield return delay;
                 }
+                dropPrev.gameObject.SetActive(false);
                 ableObstacleHit = true;
                 yield break;
 
@@ -338,6 +346,8 @@ public class PlayerBase : MonoBehaviour
                     clearItem += 2;
                 else
                     clearItem++;
+
+                clearItemText.text = clearItem.ToString();
             }
             else
             {

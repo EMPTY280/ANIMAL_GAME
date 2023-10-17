@@ -6,7 +6,7 @@ public class ItemBase : MonoBehaviour
 {
     Vector3 originPos;
     [SerializeField] protected int itemID; // 0 = 클리어아이템, 1 = 불, 2 = 물, 3 = 숲, 4 = 천사
-    float speed = 5f;
+    float speed = 10f;
 
     void Awake()
     {

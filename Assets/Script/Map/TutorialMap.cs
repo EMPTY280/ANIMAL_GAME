@@ -9,6 +9,8 @@ public class TutorialMap : LevelSegmentGroup
 
     [SerializeField] int delay = 0;
 
+    int test = 7;
+
     protected override void Awake()
     {
         base.Awake();
@@ -50,5 +52,14 @@ public class TutorialMap : LevelSegmentGroup
     public bool InProgress()
     {
         return (delay > 0);
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            ReserveSegment(test);
+            test++;
+        }
     }
 }

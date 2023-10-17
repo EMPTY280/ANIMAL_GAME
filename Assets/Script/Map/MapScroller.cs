@@ -43,15 +43,10 @@ public class MapScroller : MonoBehaviour
 
     private void Start()
     {
-        //// 최초 조각 + 두번째 조각 로드
-        //currentSegment = segments[firstSegment];
-        //segments.RemoveAt(firstSegment);
-        ////nextSegment = GetRandomSegment();
-        //nextSegment = GetNextSegment();
-
-        //SetSegmentPos();
         currentSegment = segmentGroups[currentMap].GetLevelSegment();
         nextSegment = segmentGroups[currentMap].GetLevelSegment();
+        currentSegment.gameObject.SetActive(true);
+        nextSegment.gameObject.SetActive(true);
         offsetMax = (nextSegment.GetWidth() + currentSegment.GetWidth()) / 2;
         SetSegmentPos();
     }
@@ -101,15 +96,17 @@ public class MapScroller : MonoBehaviour
     private void LoadNewSegment()
     {
         currentSegment.ReturnToOrigin();
+        currentSegment.gameObject.SetActive(false);
         //segments.Add(currentSegment);
         currentSegment = nextSegment;
         //nextSegment = GetRandomSegment();
         nextSegment = segmentGroups[currentMap].GetLevelSegment();
+        nextSegment.gameObject.SetActive(true);
         offsetMax = (nextSegment.GetWidth() + currentSegment.GetWidth()) / 2;
     }
 
     public void SetSpeed(float speed)
     {
         scrollSpeed = speed;
-    }
+    }    
 }

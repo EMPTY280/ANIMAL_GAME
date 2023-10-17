@@ -18,6 +18,15 @@ public class LevelSegmentGroup : MonoBehaviour
         }
     }
 
+    protected void Start()
+    {
+        int count = segments.Count;
+        for (int i = 0; i < count; i++)
+        {
+            segments[i].gameObject.SetActive(false);
+        }
+    }
+
     protected LevelSegment GetBaseSegment()
     {
         if(baseSeg == true)
