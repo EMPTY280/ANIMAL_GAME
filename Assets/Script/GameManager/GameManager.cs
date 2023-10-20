@@ -106,6 +106,14 @@ public class GameManager : ScriptableObject
         blackout.SetBlackout(active);
     }
 
+
+    public void SetBlackout(bool active, Vector3 position, Vector2 size)
+    {
+        spotlight.SetRect(position, size);
+        blackout.SetBlackout(active);
+    }
+
+
     /// <summary>
     /// Pauses Game
     /// </summary>

@@ -11,6 +11,9 @@ public class TutorialEvent : MonoBehaviour
     [SerializeField] TextMeshProUGUI text;
     [SerializeField] Image textBack;
     [SerializeField] PlayerBase player;
+    [SerializeField] RectTransform pauseButton;
+    [SerializeField] RectTransform clearItem;
+    [SerializeField] Camera _camera;
 
     //CsvReader csvReader = new CsvReader();
     //List<Dialogue> dialogues;
@@ -95,17 +98,21 @@ public class TutorialEvent : MonoBehaviour
     {
         if(state)
         {
-            Rect spot;
+            //Rect spot;
             switch (tutoNum)
             {
                 case 1:
-                    spot = new Rect(40f, -20f, 120f, 80f);
-                    GameManager.Instance.SetBlackout(true, spot);
+                    //spot = new Rect(40f, -20f, 120f, 80f);
+                    //spot = new Rect(pauseButton.position, pauseButton.sizeDelta);
+                    //GameManager.Instance.SetBlackout(true, spot);
+                    GameManager.Instance.SetBlackout(true, pauseButton.position,pauseButton.sizeDelta);
                     break;
 
                 case 6:
-                    spot = new Rect(1080f, -20f, 180f, 80f);
-                    GameManager.Instance.SetBlackout(true, spot);
+                    //spot = new Rect(1080f, -20f, 180f, 80f);
+                    //spot = new Rect(clearItem.anchoredPosition, clearItem.sizeDelta);
+                    //GameManager.Instance.SetBlackout(true, spot);
+                    GameManager.Instance.SetBlackout(true, clearItem.position, clearItem.sizeDelta);
                     break;
                 default:
                     return;
