@@ -8,6 +8,8 @@ TagManager:
   - Item
   - FADEOUT
   - BLACKOUT
+  - DropZone
+  - Magnet
   layers:
   - Default
   - TransparentFX
@@ -53,6 +55,9 @@ TagManager:
     locked: 0
   - name: BackGround_Close
     uniqueID: 2596024387
+    locked: 0
+  - name: BG_Fade
+    uniqueID: 2898433809
     locked: 0
   - name: Object
     uniqueID: 4012775807

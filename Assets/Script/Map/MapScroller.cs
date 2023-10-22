@@ -5,7 +5,7 @@ using UnityEngine;
 public class MapScroller : MonoBehaviour
 {
     // 레벨 조각 리스트
-    List<LevelSegment> segments = new List<LevelSegment>();
+    //List<LevelSegment> segments = new List<LevelSegment>();
     List<LevelSegmentGroup> segmentGroups = new List<LevelSegmentGroup>();
 
     int currentMap = 0;
@@ -66,24 +66,24 @@ public class MapScroller : MonoBehaviour
     }
 
     // 리스트에서 무작위 조각을 POP
-    private LevelSegment GetRandomSegment()
-    {
-        int count = segments.Count;
-        int randomIdx = Random.Range(0, count);
+    //private LevelSegment GetRandomSegment()
+    //{
+    //    int count = segments.Count;
+    //    int randomIdx = Random.Range(0, count);
 
-        LevelSegment select = segments[randomIdx];
-        segments.RemoveAt(randomIdx);
+    //    LevelSegment select = segments[randomIdx];
+    //    segments.RemoveAt(randomIdx);
 
-        return select;
-    }
+    //    return select;
+    //}
 
-    private LevelSegment GetNextSegment()
-    {
-        LevelSegment select = segments[0];
-        segments.RemoveAt(0);
+    //private LevelSegment GetNextSegment()
+    //{
+    //    LevelSegment select = segments[0];
+    //    segments.RemoveAt(0);
 
-        return select;
-    }
+    //    return select;
+    //}
 
     // 각 조각의 위치 업데이트
     private void SetSegmentPos()
@@ -109,4 +109,9 @@ public class MapScroller : MonoBehaviour
     {
         scrollSpeed = speed;
     }    
+
+    public void ChangeMap(int mapNum)
+    {
+        currentMap = mapNum;
+    }
 }

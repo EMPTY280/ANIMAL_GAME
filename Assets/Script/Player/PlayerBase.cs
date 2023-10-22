@@ -365,12 +365,15 @@ public class PlayerBase : MonoBehaviour
         }
 
         if (collision.gameObject.CompareTag("DropZone") == true)
-        {
-            obstacleHit = true;
+        {            
             if(ableRescue == true)
             {
                 isRescue = true;
                 animator.SetTrigger("RescueUp");
+            }
+            else
+            {
+                obstacleHit = true;
             }
         }
     }
@@ -465,5 +468,10 @@ public class PlayerBase : MonoBehaviour
             default:
                 return false;
         }
+    }
+
+    public void ItemReset()
+    {
+        clearItem = 0;
     }
 }

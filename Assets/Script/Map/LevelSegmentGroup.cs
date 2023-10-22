@@ -7,6 +7,10 @@ public class LevelSegmentGroup : MonoBehaviour
     protected List<LevelSegment> segments = new List<LevelSegment>();
 
     private bool baseSeg = true;
+    [SerializeField] int mapLength = 0;
+    [SerializeField] float process = 0;
+    //int currentMapNum = -1;
+    int currentMapNum = 5;
 
     protected virtual void Awake()
     {
@@ -41,14 +45,33 @@ public class LevelSegmentGroup : MonoBehaviour
         }        
     }
 
+    protected LevelSegment GetNextSegment()
+    {
+        return segments[currentMapNum];
+    }
+
     public virtual LevelSegment GetLevelSegment()
     {
-        return GetBaseSegment();
+        currentMapNum++;
+        if (currentMapNum < mapLength)
+        {
+            return GetNextSegment();
+        }
+        else
+        {
+            return GetBaseSegment();
+        }
     }
 
     public float GetMapSize()
     {
         SpriteRenderer mapRenderer = segments[0].GetComponent<SpriteRenderer>();
         return mapRenderer.sprite.bounds.size.x;
+    }
+
+    public float MapProcess()
+    {
+        process = ((float)currentMapNum / (float)mapLength);
+        return ((float)currentMapNum / (float)mapLength);
     }
 }

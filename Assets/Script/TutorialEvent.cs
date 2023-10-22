@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public class TutorialEvent : MonoBehaviour
 {
     [SerializeField] TutorialMap map;
+    [SerializeField] LevelSegmentGroup chapter2;
+    [SerializeField] MapScroller scroller;
     [SerializeField] TextMeshProUGUI text;
     [SerializeField] Image textBack;
     [SerializeField] PlayerBase player;
@@ -90,8 +92,15 @@ public class TutorialEvent : MonoBehaviour
                     map.ReserveSegment(eventData.pieceIndex);
                 }
             }
+            if (tutorialNum >= 27)
+            {
+                textBack.gameObject.SetActive(false);
+                scroller.ChangeMap(1);
+                break;
+            }
             yield return null;
         }
+        yield return null;
     }
 
     void Tutorial_Spotlight(int tutoNum, bool state)
@@ -108,7 +117,7 @@ public class TutorialEvent : MonoBehaviour
                     GameManager.Instance.SetBlackout(true, pauseButton.position,pauseButton.sizeDelta);
                     break;
 
-                case 6:
+                case 3:
                     //spot = new Rect(1080f, -20f, 180f, 80f);
                     //spot = new Rect(clearItem.anchoredPosition, clearItem.sizeDelta);
                     //GameManager.Instance.SetBlackout(true, spot);

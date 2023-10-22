@@ -9,7 +9,7 @@ public class TutorialMap : LevelSegmentGroup
 
     [SerializeField] int delay = 0;
 
-    int test = 7;
+    //int test = 7;
 
     protected override void Awake()
     {
@@ -54,12 +54,12 @@ public class TutorialMap : LevelSegmentGroup
         return (delay > 0);
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-            ReserveSegment(test);
-            test++;
-        }
-    }
+    //private void Update()
+    //{
+    //    if(Input.GetKeyDown(KeyCode.K))
+    //    {
+    //        ReserveSegment(test);
+    //        test++;
+    //    }
+    //}
 }

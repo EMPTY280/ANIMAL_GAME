@@ -73,10 +73,10 @@ public class BackGroundScroller : MonoBehaviour
         nextSegment[backGroundNum] = segmentGroups[backGroundNum].GetLevelSegment();
     }
 
-    public void SetSpeed(float speed)
+    public void SetSpeed(float farSpeed, float middleSpeed, float closeSpeed)
     {
-        scrollSpeed[0] = speed / 8;
-        scrollSpeed[1] = speed / 4;
-        scrollSpeed[2] = speed / 2;
+        scrollSpeed[0] = farSpeed;
+        scrollSpeed[1] = middleSpeed;
+        scrollSpeed[2] = closeSpeed;
     }
 }
