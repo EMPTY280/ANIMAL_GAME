@@ -23,6 +23,7 @@ public class MapScroller : MonoBehaviour
     float offset = 0.0f;
     [SerializeField] protected float offsetMax;
 
+    [SerializeField] protected float runDistance;
 
     protected void Awake()
     {
@@ -55,6 +56,7 @@ public class MapScroller : MonoBehaviour
     private void FixedUpdate()
     {
         offset += scrollSpeed * Time.fixedDeltaTime;
+        runDistance += scrollSpeed * Time.fixedDeltaTime;
 
         if (offset >= offsetMax)
         {
@@ -113,5 +115,10 @@ public class MapScroller : MonoBehaviour
     public void ChangeMap(int mapNum)
     {
         currentMap = mapNum;
+    }
+
+    public float GetMapDistance()
+    {
+        return segmentGroups[currentMap].MapLength;
     }
 }

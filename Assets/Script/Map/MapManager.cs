@@ -9,6 +9,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] BackGroundScroller background;
 
     [SerializeField] float originSpeed = 0.2f;
+    public float OriginSpeed { get { return originSpeed; } }
     [SerializeField] float farSpeed = 0.125f;
     [SerializeField] float middleSpeed = 0.25f;
     [SerializeField] float closeSpeed = 0.5f;

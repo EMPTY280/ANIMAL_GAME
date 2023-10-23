@@ -15,7 +15,7 @@ public class TutorialEvent : MonoBehaviour
     [SerializeField] PlayerBase player;
     [SerializeField] RectTransform pauseButton;
     [SerializeField] RectTransform clearItem;
-    [SerializeField] Camera _camera;
+    [SerializeField] TutorialManager manager;
 
     //CsvReader csvReader = new CsvReader();
     //List<Dialogue> dialogues;
@@ -95,7 +95,10 @@ public class TutorialEvent : MonoBehaviour
             if (tutorialNum >= 27)
             {
                 textBack.gameObject.SetActive(false);
+                StartCoroutine(manager.BackGroundChange(1));
                 scroller.ChangeMap(1);
+                manager.StartRunCheck();
+                manager.OnProcessBar(true);
                 break;
             }
             yield return null;

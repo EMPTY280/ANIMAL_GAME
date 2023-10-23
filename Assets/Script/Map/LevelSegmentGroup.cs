@@ -9,13 +9,13 @@ public class LevelSegmentGroup : MonoBehaviour
     private bool baseSeg = true;
     [SerializeField] float mapLength = 0;
     public float MapLength => mapLength;
-    //int currentMapNum = -1;
+    int mapCount;
     int currentMapNum = -1;
 
     protected virtual void Awake()
     {
-        int count = transform.childCount;
-        for (int i = 0; i < count; i++)
+        mapCount = transform.childCount;
+        for (int i = 0; i < mapCount; i++)
         {
             LevelSegment seg = transform.GetChild(i).GetComponent<LevelSegment>();
             segments.Add(seg);
@@ -54,7 +54,7 @@ public class LevelSegmentGroup : MonoBehaviour
     public virtual LevelSegment GetLevelSegment()
     {
         currentMapNum++;
-        if (currentMapNum < mapLength)
+        if (currentMapNum < mapCount)
         {
             return GetNextSegment();
         }
