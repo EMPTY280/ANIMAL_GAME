@@ -20,7 +20,6 @@ public class Title : MonoBehaviour
     {
         if (Input.anyKey)
         {
-            GameManager.Instance.ForceFadeIn();
             ActiveTitleMenu();
         }
     }
@@ -29,6 +28,7 @@ public class Title : MonoBehaviour
     {
         if (!isMenuActiive)
         {
+            GameManager.Instance.ForceFadeIn();
             isMenuActiive = true;
             GameManager.Instance.SetBlackout(true);
             OpenMenu();

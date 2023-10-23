@@ -23,6 +23,8 @@ public class PlaySceneUI : UIBase
         switch (buttonName)
         {
             case "PauseButton":
+                if (GameManager.Instance.IsChangingScene)
+                    break;
                 PausePopUp.gameObject.SetActive(true);
                 //Time.timeScale = 0f;
                 GameManager.Instance.SetPause(true);
@@ -36,6 +38,9 @@ public class PlaySceneUI : UIBase
 
             case "Exit":
                 // 로비 화면으로 씬 전환
+                PausePopUp.gameObject.SetActive(false);
+                GameManager.Instance.SetPause(false);
+                GameManager.Instance.ChangeScene("Title");
                 break;
         }
     }

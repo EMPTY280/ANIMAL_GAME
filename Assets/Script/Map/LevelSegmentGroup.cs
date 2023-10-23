@@ -7,10 +7,10 @@ public class LevelSegmentGroup : MonoBehaviour
     protected List<LevelSegment> segments = new List<LevelSegment>();
 
     private bool baseSeg = true;
-    [SerializeField] int mapLength = 0;
-    [SerializeField] float process = 0;
+    [SerializeField] float mapLength = 0;
+    public float MapLength => mapLength;
     //int currentMapNum = -1;
-    int currentMapNum = 5;
+    int currentMapNum = -1;
 
     protected virtual void Awake()
     {
@@ -27,6 +27,7 @@ public class LevelSegmentGroup : MonoBehaviour
         int count = segments.Count;
         for (int i = 0; i < count; i++)
         {
+            mapLength += segments[i].GetWidth();
             segments[i].gameObject.SetActive(false);
         }
     }
@@ -67,11 +68,5 @@ public class LevelSegmentGroup : MonoBehaviour
     {
         SpriteRenderer mapRenderer = segments[0].GetComponent<SpriteRenderer>();
         return mapRenderer.sprite.bounds.size.x;
-    }
-
-    public float MapProcess()
-    {
-        process = ((float)currentMapNum / (float)mapLength);
-        return ((float)currentMapNum / (float)mapLength);
     }
 }

@@ -246,8 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7addd06db9bd261479c9e5d30ad7a09e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapLength: 9
-  process: 0
+  mapLength: 0
 --- !u!1001 &11553558
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -393,7 +392,7 @@ MonoBehaviour:
   - {fileID: 1757108123}
   - {fileID: 383532967}
   rightGround: {fileID: 425044386}
-  segmentWidth: 0
+  segmentWidth: 100
 --- !u!1001 &42796249
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -862,7 +861,7 @@ MonoBehaviour:
   ropeList: []
   itemList: []
   rightGround: {fileID: 0}
-  segmentWidth: 0
+  segmentWidth: 22
 --- !u!1 &125376696
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,7 +910,7 @@ MonoBehaviour:
   ropeList: []
   itemList: []
   rightGround: {fileID: 0}
-  segmentWidth: 0
+  segmentWidth: 22
 --- !u!4 &126786724 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7912271349312662708, guid: 4a222b07e0d9dc543a91fc74c9e7ce43, type: 3}
@@ -1721,7 +1720,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapLength: 0
-  process: 0
 --- !u!4 &226330114 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1050883431938909430, guid: ad4b3d69630b4d5408df145b59dabf22, type: 3}
@@ -1871,7 +1869,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapLength: 0
-  process: 0
   delay: 0
 --- !u!1001 &252921495
 PrefabInstance:
@@ -3274,7 +3271,7 @@ MonoBehaviour:
   - {fileID: 761867194}
   - {fileID: 32103146}
   rightGround: {fileID: 1805605932}
-  segmentWidth: 0
+  segmentWidth: 120
 --- !u!1001 &424166002
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3451,7 +3448,7 @@ MonoBehaviour:
   ropeList: []
   itemList: []
   rightGround: {fileID: 0}
-  segmentWidth: 0
+  segmentWidth: 22
 --- !u!1001 &446777188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3622,7 +3619,7 @@ MonoBehaviour:
   ropeList: []
   itemList: []
   rightGround: {fileID: 0}
-  segmentWidth: 0
+  segmentWidth: 22
 --- !u!4 &457471242 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7912271349312662708, guid: 4a222b07e0d9dc543a91fc74c9e7ce43, type: 3}
@@ -4104,7 +4101,7 @@ MonoBehaviour:
   - {fileID: 970031175}
   - {fileID: 720459810}
   rightGround: {fileID: 0}
-  segmentWidth: 0
+  segmentWidth: 40
 --- !u!1001 &499008151
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5697,7 +5694,7 @@ MonoBehaviour:
   - {fileID: 181389195}
   - {fileID: 1800260279}
   rightGround: {fileID: 0}
-  segmentWidth: 0
+  segmentWidth: 88
 --- !u!1001 &694265833
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6259,7 +6256,7 @@ MonoBehaviour:
   itemList:
   - {fileID: 1229370695}
   rightGround: {fileID: 2072734922}
-  segmentWidth: 0
+  segmentWidth: 70
 --- !u!4 &746880030 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4240760713401636431, guid: 9b8a1e0341548a34c9ebc3960439827b, type: 3}
@@ -6523,7 +6520,7 @@ MonoBehaviour:
   ropeList: []
   itemList: []
   rightGround: {fileID: 0}
-  segmentWidth: 0
+  segmentWidth: 22
 --- !u!4 &799147159 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7218892334685541407, guid: 723cf9143197c754eb41770e6f60a063, type: 3}
@@ -7367,52 +7364,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b8a1e0341548a34c9ebc3960439827b, type: 3}
---- !u!1 &944719283
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 944719285}
-  - component: {fileID: 944719284}
-  m_Layer: 0
-  m_Name: SaveXML
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &944719284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 944719283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62f7986cea5d3d54eadd198dca2d5a53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  XMLData: 00000000
-  saveLocateType: 1
---- !u!4 &944719285
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 944719283}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9645984, y: 518.0613, z: -4.475998}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &950269069 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4240760713401636431, guid: 9b8a1e0341548a34c9ebc3960439827b, type: 3}
@@ -7971,6 +7922,7 @@ MonoBehaviour:
   buttons:
   - {fileID: 136388928}
   - {fileID: 2033536706}
+  - {fileID: 1433540311}
   PausePopUp: {fileID: 1792745662}
 --- !u!4 &990583202 stripped
 Transform:
@@ -9737,7 +9689,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapLength: 0
-  process: 0
 --- !u!4 &1269323997 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7218892334685541407, guid: 723cf9143197c754eb41770e6f60a063, type: 3}
@@ -10420,7 +10371,7 @@ MonoBehaviour:
   ropeList: []
   itemList: []
   rightGround: {fileID: 0}
-  segmentWidth: 0
+  segmentWidth: 22
 --- !u!4 &1373235253 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1050883431938909430, guid: ad4b3d69630b4d5408df145b59dabf22, type: 3}
@@ -10550,7 +10501,7 @@ MonoBehaviour:
   - {fileID: 1693662783}
   itemList: []
   rightGround: {fileID: 1960629920}
-  segmentWidth: 0
+  segmentWidth: 22
 --- !u!4 &1395521776 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7912271349312662708, guid: 4a222b07e0d9dc543a91fc74c9e7ce43, type: 3}
@@ -11110,7 +11061,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapLength: 0
-  process: 0
 --- !u!4 &1454639468 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7912271349312662708, guid: 4a222b07e0d9dc543a91fc74c9e7ce43, type: 3}
@@ -11166,7 +11116,7 @@ MonoBehaviour:
   ropeList: []
   itemList: []
   rightGround: {fileID: 0}
-  segmentWidth: 0
+  segmentWidth: 22
 --- !u!4 &1464504968 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4240760713401636431, guid: 9b8a1e0341548a34c9ebc3960439827b, type: 3}
@@ -12128,7 +12078,7 @@ MonoBehaviour:
   ropeList: []
   itemList: []
   rightGround: {fileID: 0}
-  segmentWidth: 0
+  segmentWidth: 22
 --- !u!4 &1645501254 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8322507383237424628, guid: eb6377b24203af445bbf5b34b10df6cb, type: 3}
@@ -12354,7 +12304,7 @@ MonoBehaviour:
   ropeList: []
   itemList: []
   rightGround: {fileID: 0}
-  segmentWidth: 0
+  segmentWidth: 22
 --- !u!1001 &1699675927
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12548,7 +12498,7 @@ MonoBehaviour:
   - {fileID: 1530242486}
   - {fileID: 1708904156}
   rightGround: {fileID: 0}
-  segmentWidth: 0
+  segmentWidth: 120
 --- !u!1001 &1707037285
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14429,7 +14379,7 @@ MonoBehaviour:
   ropeList: []
   itemList: []
   rightGround: {fileID: 0}
-  segmentWidth: 0
+  segmentWidth: 22
 --- !u!4 &1899224749 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1050883431938909430, guid: ad4b3d69630b4d5408df145b59dabf22, type: 3}
@@ -14951,7 +14901,7 @@ MonoBehaviour:
   - {fileID: 1109004541}
   - {fileID: 1645501256}
   rightGround: {fileID: 0}
-  segmentWidth: 0
+  segmentWidth: 40
 --- !u!1001 &1957855541
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15323,7 +15273,7 @@ MonoBehaviour:
   - {fileID: 891341147}
   - {fileID: 1119708652}
   rightGround: {fileID: 0}
-  segmentWidth: 0
+  segmentWidth: 88
 --- !u!1001 &2030042778
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16499,7 +16449,7 @@ MonoBehaviour:
   - {fileID: 655341428}
   - {fileID: 569362542}
   rightGround: {fileID: 1099371104}
-  segmentWidth: 0
+  segmentWidth: 40
 --- !u!4 &788132803207639675 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5125481562511865073, guid: 4d07193a8b96ed740984b4ba870f9e5f, type: 3}
@@ -17091,4 +17041,3 @@ SceneRoots:
   - {fileID: 1893436059}
   - {fileID: 1846381821}
   - {fileID: 369954265}
-  - {fileID: 944719285}
