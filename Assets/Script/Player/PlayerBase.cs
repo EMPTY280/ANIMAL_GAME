@@ -18,6 +18,7 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] protected GameObject magnet;
     [SerializeField] protected GameObject dropPrev;
     [SerializeField] protected TextMeshProUGUI clearItemText;
+    [SerializeField] protected TutorialManager manager;
 
     protected Rigidbody2D rigidBody;
     protected Animator animator;
@@ -37,11 +38,13 @@ public class PlayerBase : MonoBehaviour
     protected int maxJump = 2;
     protected int ableJump;
     protected int clearItem;
+    public int ClearItem => clearItem;
     protected bool itemDouble = false;
 
     protected bool onGround = false;
     protected bool onRope = false;
     protected bool isRescue = false;
+    protected bool isRush = false;
     protected bool ableRopeAction = false;
     protected bool ableRescue = false;
     protected bool ableObstacleHit = true;
@@ -287,11 +290,13 @@ public class PlayerBase : MonoBehaviour
             case 1:
                 mapManager.SetSpeed(2f);
                 ableObstacleHit = false;
+                isRush = true;
                 effects[0].SetActive(true);
                 dropPrev.gameObject.SetActive(true);
                 yield return new WaitForSeconds(3f);
                 mapManager.ReturnSpeed();
                 effects[0].SetActive(false);
+                isRush = false;
                 for (int i = 0; i < 4; i++) 
                 {
                     SpriteTwinkle();
@@ -362,6 +367,13 @@ public class PlayerBase : MonoBehaviour
             obstacleHit = true;
             ableObstacleHit = false;            
             StartCoroutine(ObstacleCrash());
+        }
+
+        if (collision.gameObject.CompareTag("Obstacle") == true && isRush == true)
+        {
+            SpriteRenderer spriteRenderer = collision.gameObject.GetComponent<SpriteRenderer>();
+            manager.PlayObstacleAni(collision.transform.position, spriteRenderer.sprite);
+            collision.gameObject.SetActive(false);
         }
 
         if (collision.gameObject.CompareTag("DropZone") == true)

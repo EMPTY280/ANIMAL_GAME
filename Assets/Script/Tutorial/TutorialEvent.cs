@@ -15,6 +15,7 @@ public class TutorialEvent : MonoBehaviour
     [SerializeField] PlayerBase player;
     [SerializeField] RectTransform pauseButton;
     [SerializeField] RectTransform clearItem;
+    [SerializeField] RectTransform processBar;
     [SerializeField] TutorialManager manager;
 
     //CsvReader csvReader = new CsvReader();
@@ -92,13 +93,13 @@ public class TutorialEvent : MonoBehaviour
                     map.ReserveSegment(eventData.pieceIndex);
                 }
             }
-            if (tutorialNum >= 27)
+            if (tutorialNum >= 29)
             {
-                textBack.gameObject.SetActive(false);
+                textBack.gameObject.SetActive(false);                
                 StartCoroutine(manager.BackGroundChange(1));
                 scroller.ChangeMap(1);
                 manager.StartRunCheck();
-                manager.OnProcessBar(true);
+                //manager.OnProcessBar(true);
                 break;
             }
             yield return null;
@@ -114,18 +115,18 @@ public class TutorialEvent : MonoBehaviour
             switch (tutoNum)
             {
                 case 1:
-                    //spot = new Rect(40f, -20f, 120f, 80f);
-                    //spot = new Rect(pauseButton.position, pauseButton.sizeDelta);
-                    //GameManager.Instance.SetBlackout(true, spot);
                     GameManager.Instance.SetBlackout(true, pauseButton.position,pauseButton.sizeDelta);
                     break;
 
-                case 3:
-                    //spot = new Rect(1080f, -20f, 180f, 80f);
-                    //spot = new Rect(clearItem.anchoredPosition, clearItem.sizeDelta);
-                    //GameManager.Instance.SetBlackout(true, spot);
+                case 3:                    
                     GameManager.Instance.SetBlackout(true, clearItem.position, clearItem.sizeDelta);
                     break;
+
+                case 27:
+                    manager.OnProcessBar(true);
+                    GameManager.Instance.SetBlackout(true, processBar.position, processBar.sizeDelta);
+                    break;
+
                 default:
                     return;
             }

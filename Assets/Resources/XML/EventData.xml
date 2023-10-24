@@ -194,6 +194,20 @@
 		<PieceIndex>0</PieceIndex>
 		<Time>3</Time>
 		<Condition>0</Condition>
+		<Text>마지막으로 위쪽에 있는 바를 볼래?</Text>
+	</EventData>
+	<EventData>
+		<EventIndex>28</EventIndex>
+		<PieceIndex>0</PieceIndex>
+		<Time>4</Time>
+		<Condition>0</Condition>
+		<Text>목표지점에 도달할수록 게이지가 차올라&#10;어디까지 달렸는지를 알 수 있을거야.</Text>
+	</EventData>
+	<EventData>
+		<EventIndex>29</EventIndex>
+		<PieceIndex>0</PieceIndex>
+		<Time>3</Time>
+		<Condition>0</Condition>
 		<Text>그럼 동화나라 성에서 보자!</Text>
 	</EventData>
 </EventDataDB>

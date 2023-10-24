@@ -109,6 +109,7 @@ MonoBehaviour:
   magnet: {fileID: 0}
   dropPrev: {fileID: 0}
   clearItemText: {fileID: 0}
+  manager: {fileID: 0}
 --- !u!95 &5074432018221594922
 Animator:
   serializedVersion: 5

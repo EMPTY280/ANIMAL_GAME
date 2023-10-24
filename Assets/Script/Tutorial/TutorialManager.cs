@@ -11,19 +11,17 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] MapScroller mapScroller;
     [SerializeField] MapManager mapManager;
     [SerializeField] Slider processBar;
+    [SerializeField] PlayerBase player;
+    [SerializeField] ObstacleAniPool aniPool;
 
     bool distanceCheck = false;
     [SerializeField] float runDistance = 0;
     [SerializeField] float mapDistance = 0;
     [SerializeField] float mapProcess = 0;
+    int clearCondition = 5;
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F))
-        {
-            StartRunCheck();
-        }
-
         if (distanceCheck == true)
         {
             runDistance += mapManager.OriginSpeed * Time.deltaTime;
@@ -32,7 +30,13 @@ public class TutorialManager : MonoBehaviour
             {
                 mapProcess = 1f;
                 distanceCheck = false;
-                GameManager.Instance.SetPause(true);
+                int clearItem = player.ClearItem;
+                GameResult result;
+                result.collectedItems = clearItem;
+                result.stageName = "튜토리얼";
+                result.isClear = clearItem >= clearCondition;
+                GameManager.Instance.SaveGameResult(result);
+                // 게임 결과창으로 가기
             }
             processBar.value = mapProcess;
         }
@@ -49,7 +53,7 @@ public class TutorialManager : MonoBehaviour
             yield return delay;
             sprite.color = color;
         }
-        //StartCoroutine(fadePanel.FadeInOut(true));
+
         yield return new WaitForSeconds(1.5f);
         backGroundScroller.MapChange(mapNum);
         while (color.a > 0f)
@@ -58,11 +62,11 @@ public class TutorialManager : MonoBehaviour
             yield return delay;
             sprite.color = color;
         }
-        //StartCoroutine(fadePanel.FadeInOut(false));
     }
 
     public void StartRunCheck()
     {
+        player.ItemReset();
         runDistance = 0;
         mapDistance = mapScroller.GetMapDistance();
         distanceCheck = true;
@@ -71,5 +75,10 @@ public class TutorialManager : MonoBehaviour
     public void OnProcessBar(bool value)
     {
         processBar.gameObject.SetActive(value);
+    }
+
+    public void PlayObstacleAni(Vector3 pos, Sprite image)
+    {
+        aniPool.PlayObstacleAni(pos, image);
     }
 }

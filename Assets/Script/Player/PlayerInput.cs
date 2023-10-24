@@ -32,7 +32,7 @@ public class PlayerInput : MonoBehaviour
 
         }
 
-        InputP();
+        //InputP();
     }
 
     private void InputP()

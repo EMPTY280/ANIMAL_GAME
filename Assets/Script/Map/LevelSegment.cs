@@ -35,8 +35,7 @@ public class LevelSegment : MonoBehaviour
     // 에디터에서 가상의 사각형 (맵 세그먼트 범위 표시)
 #if UNITY_EDITOR
     private void OnDrawGizmos()
-    {
-        originPos = transform.position;
+    {        
         if (transform.childCount > 0)
             leftGround = transform.GetChild(0).GetComponent<SpriteRenderer>();
 
@@ -70,9 +69,18 @@ public class LevelSegment : MonoBehaviour
         count = itemList.Count;
 
         for (int i = 0; i < count; i++)
-        {
-            itemList[i].gameObject.SetActive(true);
+        {            
             itemList[i].ReturnOrigin();
+        }
+
+        count = transform.childCount;
+
+        for (int i = 0; i < count; i++)
+        {
+            if (transform.GetChild(i).gameObject.activeSelf == false)
+            {
+                transform.GetChild(i).gameObject.SetActive(true);
+            }
         }
     }
 

@@ -2,6 +2,7 @@ using System.Xml;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using System.IO;
 using System;
 using System.Net.NetworkInformation;
@@ -88,10 +89,10 @@ public class SaveXML : MonoBehaviour
 
 #endif
 
-        WWW www = new WWW(strPath);
+        UnityWebRequest www = UnityWebRequest.Get(strPath);
         while (!www.isDone) { }
 
-        Interpret(www.text, num);
+        Interpret(www.downloadHandler.text, num);
     }
 
 
