@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SkipText : MonoBehaviour
 {
-    private float delta = 0.0f;
+    private float delta = 0.5f * Mathf.PI;
     [SerializeField] float speed = 1.0f;
     private Text text;
 
@@ -19,7 +19,7 @@ public class SkipText : MonoBehaviour
     {
         delta += Time.deltaTime * speed;
         Color c = text.color;
-        c.a =  Mathf.Max(Mathf.Sin(delta + Mathf.PI), 0.0f);
+        c.a = 0.5f - Mathf.Abs(Mathf.Sin(delta + Mathf.PI)) * 0.5f;
         text.color = c;
     }
 }

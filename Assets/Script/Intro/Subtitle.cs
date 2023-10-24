@@ -27,6 +27,10 @@ public class Subtitle : MonoBehaviour
     [SerializeField] Color fadeColor = Color.black;
     [SerializeField] float fadeDelay = 1.7f;
 
+    [SerializeField] Image skipCircle;
+    [SerializeField] float skipSpeed = 1.0f;
+    float skipDelay = 0.0f;
+
     private void Awake()
     {
         pd = GetComponent<PlayableDirector>();
@@ -48,8 +52,21 @@ public class Subtitle : MonoBehaviour
 
         // Skip Intro
 
-        if (Input.anyKeyDown)
+        if (Input.anyKey)
+            skipDelay += deltaTime * skipSpeed;
+        else
+            skipDelay = Mathf.Max(0.0f, skipDelay - deltaTime * skipSpeed);
+
+        skipCircle.fillAmount = Mathf.Min(1.0f, skipDelay);
+        Color newColor = skipCircle.color;
+        newColor.a = Mathf.Min(1.0f, skipDelay) * 0.5f;
+        skipCircle.color = newColor;
+
+        if (skipDelay > 1.0f)
+        {
+            skipDelay = 2.0f;
             NextScene();
+        }
 
         // Wait to Continue Subs on Typing Animation is Done.
 
@@ -98,7 +115,7 @@ public class Subtitle : MonoBehaviour
         {
             letterIndex++;
             string newText = string.Copy(currentString);
-            newText = newText.Insert(letterIndex, "<color=black>");
+            newText = newText.Insert(letterIndex, "<color=#00000000>");
             newText += "</color>";
             text.text = newText;
             yield return new WaitForSecondsRealtime(0.1f);
