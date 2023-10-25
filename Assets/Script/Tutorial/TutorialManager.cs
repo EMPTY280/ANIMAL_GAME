@@ -33,10 +33,11 @@ public class TutorialManager : MonoBehaviour
                 int clearItem = player.ClearItem;
                 GameResult result;
                 result.collectedItems = clearItem;
+                result.collectGoal = clearCondition;
                 result.stageName = "튜토리얼";
                 result.isClear = clearItem >= clearCondition;
                 GameManager.Instance.SaveGameResult(result);
-                // 게임 결과창으로 가기
+                GameManager.Instance.ChangeScene("GameResult");
             }
             processBar.value = mapProcess;
         }

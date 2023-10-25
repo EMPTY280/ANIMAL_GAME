@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Title : MonoBehaviour
 {
@@ -9,11 +10,21 @@ public class Title : MonoBehaviour
     [SerializeField] GameObject config = null;
     [SerializeField] GameObject sound = null;
 
+    [SerializeField] Transform logo = null;
+    float logoOriginYpos;
+    float delta;
+    [SerializeField] float logoSpeed = 1f;
+    [SerializeField] float logoMoveThreshold = 10f;
+
+    [SerializeField] GameObject pressStart = null;
+
     private void Awake()
     {
         menu.SetActive(false);
         config.SetActive(false);
         sound.SetActive(false);
+
+        logoOriginYpos = logo.transform.position.y;
     }
 
     void Update()
@@ -22,15 +33,22 @@ public class Title : MonoBehaviour
         {
             ActiveTitleMenu();
         }
+
+        delta += Time.deltaTime * logoSpeed;
+        Vector2 newPos = logo.transform.position;
+        newPos.y = logoOriginYpos + Mathf.Cos(delta) * logoMoveThreshold;
+        logo.position = newPos;
     }
 
     private void ActiveTitleMenu()
     {
         if (!isMenuActiive)
         {
-            GameManager.Instance.ForceFadeIn();
             isMenuActiive = true;
+            GameManager.Instance.ForceFadeIn();
             GameManager.Instance.SetBlackout(true);
+            pressStart.SetActive(false);
+            logo.gameObject.SetActive(false);
             OpenMenu();
         }
     }

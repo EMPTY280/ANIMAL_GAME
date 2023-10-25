@@ -3,210 +3,210 @@
 	<EventData>
 		<EventIndex>0</EventIndex>
 		<PieceIndex>0</PieceIndex>
-		<Time>3</Time>
+		<Time>2</Time>
 		<Condition>0</Condition>
 		<Text>지금부터는 기본 조작법을 배워 볼 거야!</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>1</EventIndex>
 		<PieceIndex>0</PieceIndex>
-		<Time>3</Time>
+		<Time>2</Time>
 		<Condition>0</Condition>
 		<Text>왼쪽에 있는 책 모양이 보이지?</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>2</EventIndex>
 		<PieceIndex>0</PieceIndex>
-		<Time>3</Time>
+		<Time>2</Time>
 		<Condition>0</Condition>
 		<Text>게임을 잠시 중단하는 버튼이야.</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>3</EventIndex>
 		<PieceIndex>0</PieceIndex>
-		<Time>3</Time>
+		<Time>2</Time>
 		<Condition>0</Condition>
 		<Text>오른쪽에 있는 갈색 창도 봐줄래?</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>4</EventIndex>
 		<PieceIndex>0</PieceIndex>
-		<Time>4</Time>
+		<Time>2.6</Time>
 		<Condition>0</Condition>
 		<Text>클리어 아이템의 종류와&#10;모은 개수를 보여줄 거야.</Text>
 	</EventData>	
 	<EventData>
 		<EventIndex>5</EventIndex>
 		<PieceIndex>0</PieceIndex>
-		<Time>4</Time>
+		<Time>2.6</Time>
 		<Condition>0</Condition>
 		<Text>슬슬 장애물이 보인다!&#10;피하는 법을 배워볼까?</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>6</EventIndex>
 		<PieceIndex>2</PieceIndex>
-		<Time>4</Time>
+		<Time>2.6</Time>
 		<Condition>1</Condition>
 		<Text>낮은 장애물은 한 번의 점프로 피할 수&#10;있어. 점프 버튼을 눌러볼래?</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>7</EventIndex>
 		<PieceIndex>0</PieceIndex>
-		<Time>4</Time>
+		<Time>2.6</Time>
 		<Condition>0</Condition>
 		<Text>잘했어! 낮은 장애물은 점프를&#10;한 번만 해도 피해질 거야.</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>8</EventIndex>
 		<PieceIndex>3</PieceIndex>
-		<Time>4</Time>
+		<Time>2.6</Time>
 		<Condition>1</Condition>
 		<Text>높은 장애물은 두 번의 점프로 피할 수&#10;있어. 점프 버튼을 두 번 연타해볼래?</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>9</EventIndex>
 		<PieceIndex>0</PieceIndex>
-		<Time>4</Time>
+		<Time>2.6</Time>
 		<Condition>0</Condition>
 		<Text>잘했어! 높은 장애물은&#10;두 번 점프하면 피해질 거야.</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>10</EventIndex>
 		<PieceIndex>4</PieceIndex>
-		<Time>4</Time>
+		<Time>2.6</Time>
 		<Condition>1</Condition>
 		<Text>위에 있는 장애물들은 슬라이딩으로 피할&#10;수 있어. 슬라이딩 버튼을 눌러볼래?</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>11</EventIndex>
 		<PieceIndex>0</PieceIndex>
-		<Time>4</Time>
+		<Time>2.6</Time>
 		<Condition>0</Condition>
 		<Text>잘했어! 위에서 오는 장애물들은&#10;점프로는 피할 수 없으니 명심해.</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>12</EventIndex>
 		<PieceIndex>5</PieceIndex>
-		<Time>4</Time>
+		<Time>2.6</Time>
 		<Condition>1</Condition>
-		<Text>위에서 긴 장애물이 나타났어!가까이&#10;가서 슬라이딩 버튼을 눌러볼까?</Text>
+		<Text>위에서 긴 장애물이 나타났어!가까이&#10;가서 슬라이딩 버튼을 꾹 눌러볼까?</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>13</EventIndex>
 		<PieceIndex>0</PieceIndex>
-		<Time>4</Time>
+		<Time>2.6</Time>
 		<Condition>0</Condition>
 		<Text>잘했어! 로프 장애물은 버튼을 누르는&#10;타이밍이 중요하니 명심해.</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>14</EventIndex>
 		<PieceIndex>6</PieceIndex>
-		<Time>4</Time>
+		<Time>2.6</Time>
 		<Condition>1</Condition>
 		<Text>오른쪽에서 공중에 떠있는 장애물이&#10;날아온다! 점프로 피해볼까?</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>15</EventIndex>
 		<PieceIndex>0</PieceIndex>
-		<Time>4</Time>
+		<Time>2.6</Time>
 		<Condition>0</Condition>
 		<Text>잘했어! 옆에서 날아오는 장애물은 너무&#10;높이 점프하면 충돌하니 명심해.</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>16</EventIndex>
 		<PieceIndex>0</PieceIndex>
-		<Time>4</Time>
+		<Time>2.6</Time>
 		<Condition>0</Condition>
 		<Text>이제 아이템에 대해서 설명해줄게.&#10;기능 아이템은 네 가지 종류가 있어.</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>17</EventIndex>
 		<PieceIndex>7</PieceIndex>
-		<Time>4</Time>
+		<Time>2.6</Time>
 		<Condition>2</Condition>
 		<Text>첫 번째는 불 구슬이야. 구슬에 닿으면&#10;능력이 발동되니까, 한번 먹어볼래?</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>18</EventIndex>
 		<PieceIndex>0</PieceIndex>
-		<Time>4</Time>
+		<Time>2.6</Time>
 		<Condition>0</Condition>
 		<Text>잘 했어! 불 구슬을 먹으면&#10;잠시동안 빠르게 달릴 거야</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>19</EventIndex>
 		<PieceIndex>8</PieceIndex>
-		<Time>4</Time>
+		<Time>2.6</Time>
 		<Condition>2</Condition>
 		<Text>이번엔 물 구슬이야. 구슬에 닿으면&#10;능력이 발동되니까, 한번 먹어볼래?</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>20</EventIndex>
 		<PieceIndex>0</PieceIndex>
-		<Time>4</Time>
+		<Time>2.6</Time>
 		<Condition>0</Condition>
 		<Text>잘 했어! 물 구슬을 먹으면 자석처럼&#10;아이템이 끌려올 거야.</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>21</EventIndex>
 		<PieceIndex>9</PieceIndex>
-		<Time>4</Time>
+		<Time>2.6</Time>
 		<Condition>2</Condition>
 		<Text>이번엔 숲 구슬이야. 구슬에 닿으면&#10;능력이 발동되니까, 한번 먹어볼래?</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>22</EventIndex>
 		<PieceIndex>0</PieceIndex>
-		<Time>4</Time>
+		<Time>2.6</Time>
 		<Condition>0</Condition>
 		<Text>잘 했어! 숲 구슬을 먹으면 떨어졌을 때&#10;한번 구출해 줄 거야.</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>23</EventIndex>
 		<PieceIndex>10</PieceIndex>
-		<Time>4</Time>
+		<Time>2.6</Time>
 		<Condition>2</Condition>
 		<Text>이번엔 천사 구슬이야. 구슬에 닿으면&#10;능력이 발동되니까, 한번 먹어볼래?</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>24</EventIndex>
 		<PieceIndex>0</PieceIndex>
-		<Time>4</Time>
+		<Time>2.6</Time>
 		<Condition>0</Condition>
 		<Text>잘 했어! 천사 구슬을 먹으면 잠시동안&#10;무적이 되고, 아이템도 두 배로 얻을 거야.</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>25</EventIndex>
 		<PieceIndex>0</PieceIndex>
-		<Time>3</Time>
+		<Time>2</Time>
 		<Condition>0</Condition>
 		<Text>수고했어! 이걸로 모든 설명을 마쳤네.</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>26</EventIndex>
 		<PieceIndex>0</PieceIndex>
-		<Time>4</Time>
+		<Time>2.6</Time>
 		<Condition>0</Condition>
 		<Text>앞에서 설명했던 장애물들이 반복될 테니,&#10;잘 해낼 수 있겠지?</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>27</EventIndex>
 		<PieceIndex>0</PieceIndex>
-		<Time>3</Time>
+		<Time>2</Time>
 		<Condition>0</Condition>
 		<Text>마지막으로 위쪽에 있는 바를 볼래?</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>28</EventIndex>
 		<PieceIndex>0</PieceIndex>
-		<Time>4</Time>
+		<Time>2.6</Time>
 		<Condition>0</Condition>
 		<Text>목표지점에 도달할수록 게이지가 차올라&#10;어디까지 달렸는지를 알 수 있을거야.</Text>
 	</EventData>
 	<EventData>
 		<EventIndex>29</EventIndex>
 		<PieceIndex>0</PieceIndex>
-		<Time>3</Time>
+		<Time>2</Time>
 		<Condition>0</Condition>
 		<Text>그럼 동화나라 성에서 보자!</Text>
 	</EventData>

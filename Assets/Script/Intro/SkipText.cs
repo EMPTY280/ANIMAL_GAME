@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ public class SkipText : MonoBehaviour
     private float delta = 0.5f * Mathf.PI;
     [SerializeField] float speed = 1.0f;
     private Text text;
+    [SerializeField] float alphaMulti = 0.5f;
 
     private void Awake()
     {
@@ -19,7 +21,7 @@ public class SkipText : MonoBehaviour
     {
         delta += Time.deltaTime * speed;
         Color c = text.color;
-        c.a = 0.5f - Mathf.Abs(Mathf.Sin(delta + Mathf.PI)) * 0.5f;
+        c.a = alphaMulti - Mathf.Abs(Mathf.Sin(delta + Mathf.PI)) * alphaMulti;
         text.color = c;
     }
 }

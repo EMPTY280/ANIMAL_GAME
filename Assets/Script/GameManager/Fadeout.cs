@@ -43,9 +43,9 @@ public class Fadeout : MonoBehaviour
         task = StartCoroutine(FadeoutCoroutine(c));
     }
 
-    public void StartFadein()
+    public void StartFadein(Callback c)
     {
-        task = StartCoroutine(FadeinCoroutine());
+        task = StartCoroutine(FadeinCoroutine(c));
     }
 
     public void ForceFadeIn()
@@ -70,7 +70,7 @@ public class Fadeout : MonoBehaviour
         c();
     }
 
-    IEnumerator FadeinCoroutine()
+    IEnumerator FadeinCoroutine(Callback c)
     {
         while (fadeout.color.a > 0)
         {
@@ -80,5 +80,6 @@ public class Fadeout : MonoBehaviour
             yield return null;
         }
         task = null;
+        c();
     }
 }

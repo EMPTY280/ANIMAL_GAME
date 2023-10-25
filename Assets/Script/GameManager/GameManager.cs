@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public struct GameResult
 {
     public int collectedItems;
+    public int collectGoal;
     public string stageName;
     public bool isClear;
 }
@@ -17,9 +18,16 @@ public class GameManager : ScriptableObject
     private Fadeout fadeout;
     private string sceneTransitionTarget = null;
     private bool isChangingScene = false;
+    private bool isFadinig = false;
+
     public bool IsChangingScene
     {
         get { return isChangingScene; }
+    }
+
+    public bool IsFading
+    {
+        get { return isFadinig; }
     }
 
     private Blackout blackout;
@@ -44,6 +52,11 @@ public class GameManager : ScriptableObject
                 instance.fadeout = newInst.GetComponentInChildren<Fadeout>();
                 instance.blackout = newInst.GetComponentInChildren<Blackout>();
                 instance.spotlight = newInst.GetComponentInChildren<Spotlight>();
+
+                instance.lastGame.stageName = "STAGE_NAME";
+                instance.lastGame.collectedItems = 99;
+                instance.lastGame.collectGoal = 99;
+                instance.lastGame.isClear = true;
             }
             return instance;
         }
@@ -66,6 +79,7 @@ public class GameManager : ScriptableObject
 
         sceneTransitionTarget = sceneName;
         isChangingScene = true;
+        isFadinig = true;
 
         fadeout.StartFadeout(LoadScene);
     }
@@ -74,7 +88,7 @@ public class GameManager : ScriptableObject
     {
         SceneManager.LoadScene(sceneTransitionTarget);
         blackout.SetBlackout(false);
-        fadeout.StartFadein();
+        fadeout.StartFadein(() => { isFadinig = false; });
         isChangingScene = false;
     }
 
@@ -106,13 +120,11 @@ public class GameManager : ScriptableObject
         blackout.SetBlackout(active);
     }
 
-
     public void SetBlackout(bool active, Vector3 position, Vector2 size)
     {
         spotlight.SetRect(position, size);
         blackout.SetBlackout(active);
     }
-
 
     /// <summary>
     /// Pauses Game
@@ -130,6 +142,7 @@ public class GameManager : ScriptableObject
     public void SaveGameResult(GameResult game)
     {
         lastGame.collectedItems = game.collectedItems;
+        lastGame.collectGoal = game.collectGoal;
         lastGame.stageName = game.stageName;
         lastGame.isClear = game.isClear;
     }
