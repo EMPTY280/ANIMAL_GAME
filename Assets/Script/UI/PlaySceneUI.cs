@@ -46,7 +46,7 @@ public class PlaySceneUI : UIBase
                 GameManager.Instance.SetBlackout(false);
                 PausePopUp.gameObject.SetActive(false);
                 GameManager.Instance.SetPause(false);
-                GameManager.Instance.ChangeScene("Title");
+                GameManager.Instance.ChangeScene("Lobby");
                 break;
         }
     }

@@ -71,7 +71,7 @@ public class GameManager : ScriptableObject
     /// <param name="color">Fading color</param>
     public void ChangeScene(string sceneName, float fadeSpeed = 1.0f, float delay = 0.5f, Color? color = null)
     {
-        if (isChangingScene) return;
+        if (isChangingScene || isFadinig) return;
 
         fadeout.FadeSpeed = fadeSpeed;
         fadeout.FadeColor = color ?? Color.black;
@@ -106,7 +106,11 @@ public class GameManager : ScriptableObject
     /// </summary>
     public void ForceFadeIn()
     {
+        if (!isFadinig) return;
+
         fadeout.ForceFadeIn();
+        isFadinig = false;
+        isChangingScene = false;
     }
 
     /// <summary>

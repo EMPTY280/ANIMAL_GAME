@@ -103,7 +103,7 @@ public class Result : MonoBehaviour
         else
         {
             if (Input.anyKeyDown)
-                GameManager.Instance.ChangeScene("Title");
+                GameManager.Instance.ChangeScene("Lobby");
         }
     }
 

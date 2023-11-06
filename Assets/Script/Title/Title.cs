@@ -76,7 +76,7 @@ public class Title : MonoBehaviour
 
     public void StartGame()
     {
-        GameManager.Instance.ChangeScene("TutorialScene");
+        GameManager.Instance.ChangeScene("Lobby");
     }
 
     public void ExitGame()
