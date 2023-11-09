@@ -45,7 +45,7 @@ public class ButtonAnimation : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
         UpdateSize();
 
-        currentSize = Mathf.Min(currentSize + Time.deltaTime , 1.0f);
+        currentSize = Mathf.Min(currentSize + Time.unscaledDeltaTime , 1.0f);
     }
 
     private void UpdateSize(float size = -1.0f)
