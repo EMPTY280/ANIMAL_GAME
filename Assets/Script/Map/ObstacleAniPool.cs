@@ -21,7 +21,7 @@ public class ObstacleAniPool : MonoBehaviour
 
     GameObject CreateObject()
     {
-        GameObject obj = Instantiate(instance);
+        GameObject obj = Instantiate(instance, transform);
         return obj;
     }
 
