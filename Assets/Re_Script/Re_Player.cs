@@ -236,6 +236,7 @@ public class Re_Player : MonoBehaviour
             ChangeAnimation("DoubleJump");
         }
 
+        GameManager.Instance.SoundManager.PlaySFX("jump");
         onGround = false;
         currentJump++;
         _rigidbody.velocity = new Vector2(0f, jumpPower);
@@ -503,6 +504,7 @@ public class Re_Player : MonoBehaviour
         if(collision.gameObject.CompareTag("Item") == true)
         {
             ItemBase item = collision.gameObject.GetComponent<ItemBase>();
+            GameManager.Instance.SoundManager.PlaySFX("item");
             UseItem(item.ItemID);
             collision.gameObject.SetActive(false);
         }
@@ -518,6 +520,7 @@ public class Re_Player : MonoBehaviour
             else if (isInvincibility == false)
             {
                 CurrentHp--;
+                GameManager.Instance.SoundManager.PlaySFX("crach");
                 if (CurrentHp == 0)
                 {
                     _manager.InputOff();

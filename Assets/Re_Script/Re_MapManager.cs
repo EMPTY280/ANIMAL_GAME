@@ -98,7 +98,7 @@ public class Re_MapManager : MonoBehaviour
 
         if (maps[currentMap].MapLength < chapterDistance) return;
 
-        while(disSum < chapterDistance)
+        for(int i = 0; disSum < chapterDistance || i<100 ; i++)
         {
             Re_MapSegment seg = maps[currentMap].GetRandomSegment();
             if (mapScroller.ReservedCheck(seg))

@@ -122,7 +122,7 @@ public class PlayerBase : MonoBehaviour
 
         if(magnet.activeSelf == true)
         {
-            magnet.transform.position = transform.position;
+            magnet.transform.position = transform.position + Vector3.up;
         }
     }
 
