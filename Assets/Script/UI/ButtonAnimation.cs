@@ -66,6 +66,7 @@ public class ButtonAnimation : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             return;
         UpdateSize(minSIze);
         isMouseDown = true;
+        GameManager.Instance.SoundManager.PlaySFX("click");
     }
 
     public void OnPointerUp(PointerEventData eventData)

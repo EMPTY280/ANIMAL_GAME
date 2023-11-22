@@ -35,6 +35,15 @@ public class GameManager : ScriptableObject
 
     private GameResult lastGame;
 
+    private static SoundManager soundManager = null;
+    public SoundManager SoundManager
+    {
+        get
+        {
+            return soundManager;
+        }
+    }
+
     /// <summary>
     /// Returns GameManager singleton instance.
     /// </summary>
@@ -57,6 +66,9 @@ public class GameManager : ScriptableObject
                 instance.lastGame.collectedItems = 99;
                 instance.lastGame.collectGoal = 99;
                 instance.lastGame.isClear = true;
+
+                GameObject soundObject = new GameObject("SoundManager");
+                soundManager = soundObject.AddComponent<SoundManager>();
             }
             return instance;
         }

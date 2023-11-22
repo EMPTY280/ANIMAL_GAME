@@ -8,6 +8,8 @@ public class LobbyScene : MonoBehaviour
     [SerializeField]
     private Button[] buttons;
 
+    private bool startingGame = false;
+
     private void Awake()
     {
         for (int i = 0; i < buttons.Length; i++)
@@ -20,7 +22,7 @@ public class LobbyScene : MonoBehaviour
 
     private void Update()
     {
-        if (Input.anyKey)
+        if (Input.anyKey && !startingGame)
         {
             GameManager.Instance.ForceFadeIn();
         }
@@ -45,5 +47,6 @@ public class LobbyScene : MonoBehaviour
     public void GameStart()
     {
         GameManager.Instance.ChangeScene("TutorialScene");
+        startingGame = true;
     }
 }

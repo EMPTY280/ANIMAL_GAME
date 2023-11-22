@@ -499,8 +499,10 @@ GameObject:
   m_Component:
   - component: {fileID: 372664809}
   - component: {fileID: 372664808}
+  - component: {fileID: 372664810}
+  - component: {fileID: 372664811}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: ON_GAME_START
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -535,6 +537,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &372664810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372664807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 492b916caa697f04598059c99ea358e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &372664811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372664807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6f39f04efeca3644b244933aa5de54a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BGMname: BGM_Title
 --- !u!1 &463362374
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,7 +758,6 @@ GameObject:
   - component: {fileID: 1035544731}
   - component: {fileID: 1035544734}
   - component: {fileID: 1035544733}
-  - component: {fileID: 1035544735}
   m_Layer: 0
   m_Name: CutSceneManager
   m_TagString: Untagged
@@ -866,18 +892,6 @@ MonoBehaviour:
   fadeDelay: 1.2
   skipCircle: {fileID: 117914988}
   skipSpeed: 1
---- !u!114 &1035544735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1035544730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 492b916caa697f04598059c99ea358e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1092204760
 GameObject:
   m_ObjectHideFlags: 0

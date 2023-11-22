@@ -9884,6 +9884,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5125481562511865073, guid: 4d07193a8b96ed740984b4ba870f9e5f, type: 3}
   m_PrefabInstance: {fileID: 302035735}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1123065617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1123065619}
+  - component: {fileID: 1123065618}
+  m_Layer: 0
+  m_Name: -- PLAY BGM --
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1123065618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123065617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6f39f04efeca3644b244933aa5de54a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BGMname: BGM_Tutorial
+--- !u!4 &1123065619
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123065617}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 540.5023, y: 255.93787, z: 3.4592993}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1130550154
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18782,3 +18827,4 @@ SceneRoots:
   - {fileID: 369954265}
   - {fileID: 1710688055}
   - {fileID: 668370347}
+  - {fileID: 1123065619}

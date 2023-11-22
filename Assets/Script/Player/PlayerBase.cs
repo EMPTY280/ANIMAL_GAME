@@ -52,7 +52,6 @@ public class PlayerBase : MonoBehaviour
     protected bool obstacleHit = false;
     protected bool itemHit = false;
 
-
     protected virtual void Awake()
     {
         int count = transform.childCount;
@@ -71,6 +70,7 @@ public class PlayerBase : MonoBehaviour
         groundLayer = 1 << LayerMask.NameToLayer("Ground");
         ropeLayer = 1 << LayerMask.NameToLayer("Rope");
         ropeEndLayer = 1 << LayerMask.NameToLayer("RopeEnd");
+
     }
 
     // Start is called before the first frame update
@@ -351,7 +351,6 @@ public class PlayerBase : MonoBehaviour
                     clearItem += 2;
                 else
                     clearItem++;
-
                 clearItemText.text = clearItem.ToString();
             }
             else
@@ -400,6 +399,7 @@ public class PlayerBase : MonoBehaviour
         animator.SetBool("ObstacleHit", false);
 
         SpriteTwinkle();
+
         //Color temp = spriteRenderer.color;
         //temp.a = 0.5f;
         //spriteRenderer.color = temp;

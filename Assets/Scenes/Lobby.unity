@@ -1105,6 +1105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 917413865}
   - component: {fileID: 917413866}
+  - component: {fileID: 917413867}
   m_Layer: 0
   m_Name: -- Lobby Scene --
   m_TagString: Untagged
@@ -1145,6 +1146,19 @@ MonoBehaviour:
   - {fileID: 112458827}
   - {fileID: 253322088}
   - {fileID: 921693754}
+--- !u!114 &917413867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917413863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6f39f04efeca3644b244933aa5de54a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BGMname: BGM_Lobby
 --- !u!1 &921693749
 GameObject:
   m_ObjectHideFlags: 0
