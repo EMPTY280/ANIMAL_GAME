@@ -43,7 +43,10 @@ public class SoundManager : MonoBehaviour
             BGMList[i].LoadAudioData();
         }
         for (int i = 0; i < SFXList.Length; i++)
+        {
             SFXKeys.Add(SFXList[i].name, i);
+            SFXList[i].LoadAudioData();
+        }
     }
 
     public void SetVolumeMaster(float v)

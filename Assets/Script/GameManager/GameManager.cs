@@ -11,6 +11,12 @@ public struct GameResult
     public bool isClear;
 }
 
+public enum Characters
+{
+    RABBIT,
+    CAT
+}
+
 public class GameManager : ScriptableObject
 {
     private static GameManager instance = null;
@@ -19,6 +25,8 @@ public class GameManager : ScriptableObject
     private string sceneTransitionTarget = null;
     private bool isChangingScene = false;
     private bool isFadinig = false;
+
+    private Characters character;
 
     public bool IsChangingScene
     {
@@ -42,6 +50,12 @@ public class GameManager : ScriptableObject
         {
             return soundManager;
         }
+    }
+
+    public Characters Character
+    {
+        get { return character; }
+        set { character = value; }
     }
 
     /// <summary>
@@ -69,6 +83,8 @@ public class GameManager : ScriptableObject
 
                 GameObject soundObject = new GameObject("SoundManager");
                 soundManager = soundObject.AddComponent<SoundManager>();
+
+                instance.character = Characters.RABBIT;
             }
             return instance;
         }
