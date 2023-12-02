@@ -6,7 +6,7 @@ public class Re_MapScroller : MonoBehaviour
 {
     [SerializeField] protected Re_MapManager mapManager;
     [SerializeField] BaseSegment[] baseSegment = new BaseSegment[2];
-    List<Re_MapSegment> reservedSegment = new List<Re_MapSegment>();
+    [SerializeField] List<Re_MapSegment> reservedSegment = new List<Re_MapSegment>();
 
     Re_MapSegment firstSegment = null;
     Re_MapSegment secondSegment = null;

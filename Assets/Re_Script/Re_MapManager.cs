@@ -19,11 +19,12 @@ public class Re_MapManager : MonoBehaviour
     [SerializeField] private float middleBackground = 1f;
     [SerializeField] private float closeBackground = 1f;
 
-    float totalDistance;
+    float totalDistance = 0;
+    float chapterMeasure = 0f;
     float originMapSpeed = 10f;
     float times = 1f;
 
-    bool isMeasuringDistance = false;
+    bool isMeasuringDistance = true;
     int currentMap = 0;
     public int CurrentMap => currentMap;
     public float Distance { get { return distance; } set { distance = value; Re_PlaySceneManager.Instance.SetProcess(distance / totalDistance); } }
@@ -34,9 +35,14 @@ public class Re_MapManager : MonoBehaviour
         Re_PlaySceneManager.Instance.AddListener(EVENT_TYPE.RUN_START, OnStartRun);
         Re_PlaySceneManager.Instance.AddListener(EVENT_TYPE.RUN_END, OnEndRun);
         Re_PlaySceneManager.Instance.AddListener(EVENT_TYPE.PLAYER_DEAD, OnPlayerDead);
+        int count = maps.Count;
+        for (int i = 0; i < count; i++)
+        {
+            totalDistance += maps[i].ChapterLength;
+        }
+        chapterDistance = maps[0].ChapterLength;
         UpdateSpeed();
         MapReserve();
-        totalDistance = maps.Count * chapterDistance;
     }
 
     private void Update()
@@ -44,6 +50,12 @@ public class Re_MapManager : MonoBehaviour
         if (isMeasuringDistance == true)
         {
             Distance += originMapSpeed * times * Time.deltaTime;// 거리 측정
+            chapterMeasure += originMapSpeed * times * Time.deltaTime;
+            if (chapterMeasure >= chapterDistance)
+            {
+                chapterMeasure = 0f;
+                isMeasuringDistance = false;
+            }
         }
         else if (isMeasuringDistance == false && Distance < (currentMap + 1) * chapterDistance && Distance > 0)
         {
@@ -85,6 +97,7 @@ public class Re_MapManager : MonoBehaviour
     void LoadNextMap()
     {
         currentMap++; // change to next segmentGroup and BackGround with FadeOut
+        chapterDistance = maps[currentMap].ChapterLength;
         mapScroller.BaseGround = maps[currentMap].GroundSprite;
         bgScrollers[0].ChangeMap(currentMap);
         bgScrollers[1].ChangeMap(currentMap);
@@ -98,14 +111,12 @@ public class Re_MapManager : MonoBehaviour
 
         if (maps[currentMap].MapLength < chapterDistance) return;
 
-        for(int i = 0; disSum < chapterDistance || i<100 ; i++)
+        for(int i = 0; disSum < chapterDistance ; i++)
         {
-            Re_MapSegment seg = maps[currentMap].GetRandomSegment();
-            if (mapScroller.ReservedCheck(seg))
-            {
-                disSum += seg.SegmentLength;
-                mapScroller.ReserveSegment(seg);
-            }
+            if (i > 100) break;
+            Re_MapSegment seg = maps[currentMap].GetRandomSegment(0);
+            disSum += seg.SegmentLength;
+            mapScroller.ReserveSegment(seg);
         }
     }
 

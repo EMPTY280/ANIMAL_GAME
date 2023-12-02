@@ -37,6 +37,8 @@ public class Re_Player : MonoBehaviour
         }
     }
 
+    public Animator _Animator { get { return _animator; } set { _animator = value; } }
+
     protected bool onGround = false;
     protected bool onRope = false;
     protected bool ropeJumped = false;

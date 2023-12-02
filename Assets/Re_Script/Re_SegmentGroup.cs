@@ -10,13 +10,16 @@ public class Re_SegmentGroup : MonoBehaviour
     Dictionary<int, List<Re_MapSegment>> segments = new Dictionary<int, List<Re_MapSegment>>(); // 레벨 별 세그먼트 리스트 0, 1, 2
 
     private float mapLength = 0f;
+    [SerializeField] private float chapterLength = 600f;
     public float MapLength => mapLength;
+    public float ChapterLength => chapterLength;
 
     int levelMax = 3;
     int currentLevel = 0;
     int currentSegmentNumber = 0;
 
     Re_MapSegment lastReturnedSegment = null;
+    Re_MapSegment beforeLastSegment = null;
 
     private void Awake()
     {
@@ -70,10 +73,14 @@ public class Re_SegmentGroup : MonoBehaviour
     public Re_MapSegment GetRandomSegment(int level) // 특정 레벨 세그먼트 중 랜덤으로 하나를 반환
     {
         int segmentNumber = Random.Range(0, segments[level].Count);
-        if (segments[level][segmentNumber] == lastReturnedSegment)
+        if (segments[level][segmentNumber] == lastReturnedSegment || segments[level][segmentNumber] == beforeLastSegment)
         {
-            return GetRandomSegment(level);
+            if (segments[level].Count < 3)
+                return null;
+            else
+                return GetRandomSegment(level);
         }
+        beforeLastSegment = lastReturnedSegment;
         lastReturnedSegment = segments[level][segmentNumber];
         return segments[level][segmentNumber];
     }
