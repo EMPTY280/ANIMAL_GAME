@@ -83,4 +83,9 @@ public class Title : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void StartTutorial()
+    {
+        GameManager.Instance.ChangeScene("TutorialScene");
+    }
 }

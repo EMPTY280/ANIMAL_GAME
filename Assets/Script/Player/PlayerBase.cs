@@ -25,6 +25,7 @@ public class PlayerBase : MonoBehaviour
     protected BoxCollider2D boxCollider;
     protected Rope rope;
     protected SpriteRenderer spriteRenderer;
+    protected SoundManager _soundManager;
 
     protected List<GameObject> effects = new List<GameObject>();
 
@@ -45,6 +46,7 @@ public class PlayerBase : MonoBehaviour
     protected bool onRope = false;
     protected bool isRescue = false;
     protected bool isRush = false;
+    protected bool isSlide = false;
     protected bool ableRopeAction = false;
     protected bool ableRescue = false;
     protected bool ableObstacleHit = true;
@@ -60,6 +62,7 @@ public class PlayerBase : MonoBehaviour
         animator = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        _soundManager = GameManager.Instance.SoundManager;
 
         for (int i = 0; i < count; i++) 
         {
@@ -186,6 +189,7 @@ public class PlayerBase : MonoBehaviour
     {
         
         Slide(false);
+        _soundManager.PlaySFX("jump");
         rigidBody.velocity = new Vector2(0f, jumpPower);
         if(ableJump == maxJump)
         {
@@ -203,13 +207,16 @@ public class PlayerBase : MonoBehaviour
 
     protected void Slide(bool onSlide)
     {
-        if (onSlide == true)
+        if (onSlide == true && isSlide == false)
         {
+            isSlide = true;
+            _soundManager.PlaySFX("sliding");
             boxCollider.offset = originColOff / 2;
             boxCollider.size = new Vector2(originColSize.x, originColSize.y / 2);
         }
-        else
+        else if (onSlide == false && isSlide == true)
         {
+            isSlide = false;
             boxCollider.offset = originColOff;
             boxCollider.size = originColSize;
         }
@@ -221,6 +228,7 @@ public class PlayerBase : MonoBehaviour
     {
         if (_onRope == true)
         {
+            _soundManager.PlaySFX("Rope");
             rigidBody.gravityScale = 0f;
             rigidBody.velocity = Vector2.zero;
             rope.CatchRope(transform.position.x + 0.6f);
@@ -345,7 +353,8 @@ public class PlayerBase : MonoBehaviour
         {
             ItemBase item = collision.gameObject.GetComponent<ItemBase>();
             int id = item.GetItemID();
-            if(id == 0)
+            _soundManager.PlaySFX("item");
+            if (id == 0)
             {
                 if (itemDouble == true)
                     clearItem += 2;
@@ -364,7 +373,8 @@ public class PlayerBase : MonoBehaviour
         if (collision.gameObject.CompareTag("Obstacle") == true && ableObstacleHit == true)
         {
             obstacleHit = true;
-            ableObstacleHit = false;            
+            ableObstacleHit = false;
+            _soundManager.PlaySFX("crach");
             StartCoroutine(ObstacleCrash());
         }
 

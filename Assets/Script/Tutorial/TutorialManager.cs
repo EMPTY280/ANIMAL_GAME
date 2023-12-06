@@ -37,7 +37,7 @@ public class TutorialManager : MonoBehaviour
                 result.stageName = "Æ©Åä¸®¾ó";
                 result.isClear = clearItem >= clearCondition;
                 GameManager.Instance.SaveGameResult(result);
-                GameManager.Instance.ChangeScene("GameResult");
+                GameManager.Instance.ChangeScene("Title");
             }
             processBar.value = mapProcess;
         }
