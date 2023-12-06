@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Timeline;
 using UnityEngine.UIElements;
 
 public class Re_MapManager : MonoBehaviour
@@ -72,11 +73,18 @@ public class Re_MapManager : MonoBehaviour
     }
 
     IEnumerator ChangeMap()
-    {        
+    {
+        SoundManager soundManager = GameManager.Instance.SoundManager;
+        float bgmOrigin = soundManager.GetVolumeBGM();
+        float bgmVol = bgmOrigin;
+        float bgmInterval = bgmOrigin / 100f;
+
         Color color = fadePanel.color;
         WaitForSeconds delay = new WaitForSeconds(0.01f);
         while (color.a < 1.0f)
         {
+            bgmVol -= bgmInterval;
+            soundManager.SetVolumeBGM(bgmVol);
             color.a += 0.01f;
             yield return delay;
             fadePanel.color = color;
@@ -84,10 +92,13 @@ public class Re_MapManager : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
 
-        LoadNextMap();        
+        LoadNextMap();
+        soundManager.PlayBGM("BGM_Chapter_" + currentMap.ToString());
 
         while (color.a > 0f)
         {
+            bgmVol += bgmInterval;
+            soundManager.SetVolumeBGM(bgmVol);
             color.a -= 0.01f;
             yield return delay;
             fadePanel.color = color;

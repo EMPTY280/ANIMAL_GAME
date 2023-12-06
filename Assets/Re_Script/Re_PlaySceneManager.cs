@@ -19,6 +19,7 @@ public class Re_PlaySceneManager : MonoBehaviour
     [SerializeField] Re_PlayUI ui;
 
     private int clearItem = 0;
+    private float mapProcess = 0f;
     public int ClearItem { get { return clearItem; } set { clearItem = value; ui.SetClearItem(clearItem); } }
 
     public static Re_PlaySceneManager Instance => instance;
@@ -39,9 +40,9 @@ public class Re_PlaySceneManager : MonoBehaviour
     {
         GameResult gameResult = new GameResult();
         gameResult.collectedItems = ClearItem;
-        gameResult.collectGoal = 10;
-        gameResult.isClear = (ClearItem >= gameResult.collectGoal); // && run Complete
-        gameResult.stageName = "1111";
+        gameResult.collectGoal = 40;
+        gameResult.isClear = (ClearItem >= gameResult.collectGoal) && player.CurrentHp > 0;
+        gameResult.stageName = "Play Scene";
         GameManager.Instance.SaveGameResult(gameResult);
         GameManager.Instance.ChangeScene("GameResult");
     }
@@ -53,6 +54,7 @@ public class Re_PlaySceneManager : MonoBehaviour
 
     public void SetProcess(float process)
     {
+        mapProcess = process;
         ui.SetProcess(process);
     }
 

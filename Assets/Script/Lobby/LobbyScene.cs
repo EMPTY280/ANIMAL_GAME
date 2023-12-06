@@ -104,7 +104,8 @@ public class LobbyScene : MonoBehaviour
     public void GameStart()
     {
         ChangeDepth(1);
-        GameManager.Instance.ChangeScene("TutorialScene");
+        //GameManager.Instance.ChangeScene("TutorialScene");
+        GameManager.Instance.ChangeScene("GamePlayScene");
         startingGame = true;
     }
 

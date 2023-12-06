@@ -9,6 +9,7 @@ public class Re_Player : MonoBehaviour
     protected Animator _animator;
     protected BoxCollider2D _collider;
     protected SpriteRenderer _playerSprite;
+    protected SoundManager _soundManager;
 
     [SerializeField] protected LayerMask _groundLayer;
     [SerializeField] protected LayerMask _ropeLayer;
@@ -41,6 +42,7 @@ public class Re_Player : MonoBehaviour
 
     protected bool onGround = false;
     protected bool onRope = false;
+    protected bool onSlide = false;
     protected bool ropeJumped = false;
     protected bool isInvincibility = false;
     protected bool getItemDouble = false;
@@ -61,6 +63,7 @@ public class Re_Player : MonoBehaviour
         _animator = GetComponent<Animator>();
         _collider = GetComponent<BoxCollider2D>();
         _playerSprite = GetComponent<SpriteRenderer>();
+        _soundManager = GameManager.Instance.SoundManager;
     }
 
     void Start()
@@ -238,26 +241,30 @@ public class Re_Player : MonoBehaviour
             ChangeAnimation("DoubleJump");
         }
 
-        GameManager.Instance.SoundManager.PlaySFX("jump");
+        _soundManager.PlaySFX("jump");
         onGround = false;
+        onSlide = false;
         currentJump++;
         _rigidbody.velocity = new Vector2(0f, jumpPower);
     }
 
     private void SlideDown()
     {
-        if (onGround == false)
+        if (onGround == false || onSlide == true)
             return;
 
+        _soundManager.PlaySFX("sliding");
+        onSlide = true;
         ChangeAnimation("SlideDown");
         ChangeColiider("SlideDown");
     }
 
     private void SlideUp()
     {
-        if (onGround == false)
+        if (onGround == false || onSlide == false)
             return;
 
+        onSlide = false;
         ChangeAnimation("SlideUp");
         ChangeColiider("SlideUp");
     }
@@ -267,6 +274,7 @@ public class Re_Player : MonoBehaviour
         if(ableRope == false || ropeJumped == true)
             return;
 
+        _soundManager.PlaySFX("Rope");
         onRope = true;
         _rigidbody.gravityScale = 0f;
         _rigidbody.velocity = Vector2.zero;
@@ -506,7 +514,7 @@ public class Re_Player : MonoBehaviour
         if(collision.gameObject.CompareTag("Item") == true)
         {
             ItemBase item = collision.gameObject.GetComponent<ItemBase>();
-            GameManager.Instance.SoundManager.PlaySFX("item");
+            _soundManager.PlaySFX("item");
             UseItem(item.ItemID);
             collision.gameObject.SetActive(false);
         }
@@ -522,9 +530,10 @@ public class Re_Player : MonoBehaviour
             else if (isInvincibility == false)
             {
                 CurrentHp--;
-                GameManager.Instance.SoundManager.PlaySFX("crach");
+                _soundManager.PlaySFX("crach");
                 if (CurrentHp == 0)
                 {
+                    _soundManager.PlaySFX("over");
                     _manager.InputOff();
                     StartCoroutine(Dead());
                 }
